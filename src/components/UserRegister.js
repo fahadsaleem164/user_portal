@@ -7,21 +7,18 @@ import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router
 class UserRegister extends Component {
 
         constructor(props){
+
             super(props)
+
             this.state = {
-             
                 msg: '' ,
                 errorStatus : '',
-                redirect: false
+                redirect: false,
+                key : props.location.search.substring(5)
                 
            }
         }
 
-
-        redirectUrl(){
-
-            setTimeout(() => this.setState({ redirect: true }), 1000)
-        }
 
     handleChange = (event) => {        
     
@@ -33,8 +30,7 @@ class UserRegister extends Component {
         event.preventDefault()
         const formData = {}
         var fd = new FormData();
-       
-        fd.append('form-name','user form')
+    
         fd.append( 'name', this.state.name);
         fd.append( 'fname', this.state.fname);
         fd.append( 'email', this.state.email);
@@ -44,7 +40,7 @@ class UserRegister extends Component {
         fd.append( 'stdUniId', this.state.stdUniId);
         fd.append( 'landLineNumber', this.state.landLineNumber);
         fd.append( 'departmentId', this.state.departmentId);
-        fd.append( 'eventId',this.state.eventId);
+        fd.append( 'eventId', this.state.key);
 
         
 
@@ -52,7 +48,7 @@ class UserRegister extends Component {
        
             formData[key[0]] = key[1]
         }       
-      
+
         const axiosOptions = {
 
           url: process.env.React_App_API_URL + 'users/register',
@@ -73,9 +69,7 @@ class UserRegister extends Component {
 
                 } 
                 else {
-                    
-                  
-                   
+                    alert("Please Check your Email")
                     this.setState({
                         errorStatus : 'success', 
                         msg:response.data.message,
@@ -98,80 +92,84 @@ class UserRegister extends Component {
 
     render() {
         return (
-           
-        <section class="section-2"  style={{background:"#eef4ed"}}>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h1 style={{textAlign:'center'}}>User Registration</h1>
-                        <form name="user form" method="POST" onSubmit={event => this.handleSubmit(event)}>
-                        {this.state.errorStatus == 'error'?
-                            <div class="col-12 m-0 p-2 input-group">
-                                   <p style={{color:'red'}}>{this.state.msg}</p>
-                                </div>
-                            :null}
 
-                        {this.state.errorStatus == 'success'?
-                            <div class="col-12 m-0 p-2 input-group">
-                                   <p style={{color:'green'}}>{this.state.msg}
-                                   <Redirect to="/verify_code"  />
-                                   </p>
-                                </div>
-                            :null}
+                <section class="section-2"  style={{background:"#eef4ed"}}>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-lg-3"></div>
+                                    <div class="col-12 col-lg-6">
+                                        <h1 style={{textAlign:'center'}}>User Registration</h1>
+                                        <form name="user form" method="POST" onSubmit={event => this.handleSubmit(event)}>
+                                        {this.state.errorStatus == 'error'?
+                                            <div class="col-12 m-0 p-2 input-group">
+                                                <p style={{color:'red'}}>{this.state.msg}</p>
+                                                </div>
+                                            :null}
+
+                                        {this.state.errorStatus == 'success'?
+                                            <div class="col-12 m-0 p-2 input-group">
+                                                <p style={{color:'green'}}>{this.state.msg}
+                                                
+
+                                                <Redirect to="/verify_code"  />
+                                                </p>
+                                                </div>
+                                            :null}
 
 
-                            <div class="row form-group-margin">
-                                
-                                <div class="col-12 m-0 p-2 input-group">
-                                    <input type="text" name="name" class="form-control field-name" placeholder="Name" onChange={this.handleChange}/>
-                                </div>
+                                            <div class="row form-group-margin">
+                                                
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="text" name="name" class="form-control field-name" placeholder="Name" onChange={this.handleChange}/>
+                                                </div>
 
-                                <div class="col-12 m-0 p-2 input-group">
-                                    <input type="text" name="fname" class="form-control field-name" placeholder="Father Name" onChange={this.handleChange}/>
-                                </div>
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="text" name="fname" class="form-control field-name" placeholder="Last Name" onChange={this.handleChange}/>
+                                                </div>
 
-                                <div class="col-12 m-0 p-2 input-group">
-                                    <input type="text" name="email" class="form-control field-name" placeholder="email" onChange={this.handleChange}/>
-                                </div>
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="text" name="email" class="form-control field-name" placeholder="Email" onChange={this.handleChange}/>
+                                                </div>
 
-                                <div class="col-12 m-0 p-2 input-group">
-                                    <input type="password" name="password" class="form-control field-name" placeholder="Password" onChange={this.handleChange}/>
-                                </div>
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="password" name="password" class="form-control field-name" placeholder="Password" onChange={this.handleChange}/>
+                                                </div>
 
-                                <div class="col-12 m-0 p-2 input-group">
-                                    <input type="text" name="city" class="form-control field-name" placeholder="City" onChange={this.handleChange}/>
-                                </div>
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="text" name="city" class="form-control field-name" placeholder="City" onChange={this.handleChange}/>
+                                                </div>
 
-                                <div class="col-12 m-0 p-2 input-group">
-                                    <input type="number" name="mobileNumber" class="form-control field-name" placeholder="Mobile Number" onChange={this.handleChange}/>
-                                </div>
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="number" name="mobileNumber" class="form-control field-name" placeholder="Mobile Number" onChange={this.handleChange}/>
+                                                </div>
 
-                                <div class="col-12 m-0 p-2 input-group">
-                                    <input type="number" class="form-control field-name" name="landLineNumber" placeholder="Landline Number" onChange={this.handleChange} />
-                                </div>
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="number" class="form-control field-name" name="landLineNumber" placeholder="Landline Number" onChange={this.handleChange} />
+                                                </div>
 
-                                <div class="col-12 m-0 p-2 input-group">
-                                    <input type="text" name="stdUniId" class="form-control field-name" placeholder="Student Id" onChange={this.handleChange}/>
-                                </div>
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="text" name="stdUniId" class="form-control field-name" placeholder="Student Id" onChange={this.handleChange}/>
+                                                </div>
 
-                               
-                                <div class="col-12 m-0 p-2 input-group">
-                                   <input type="text" name="departmentId"  class="form-control field-name" placeholder="Department" onChange={this.handleChange} />
-                                </div>
+                                            
+                                                <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+                                                <input type="text" name="departmentId"  class="form-control field-name" placeholder="Department" onChange={this.handleChange} />
+                                                </div>
 
-                                <div class="col-12 m-0 p-2 input-group">
-                                   <input type="text" name="eventId"  class="form-control field-name" placeholder="Event" onChange={this.handleChange} />
-                                </div>
-                                
-                                <div class="col-12 input-group m-0 p-2">
-                                    <input type="submit" class="btn primary-button" style={{marginLeft:"45%"}}/>
+                                               
+                                                
+                                                <div class="col-12 input-group m-0 p-2">
+                                                    <input type="submit" class="btn primary-button" style={{marginLeft:"45%"}}/>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-12 col-lg-3"></div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+             </section>
+          
          
         );
     }

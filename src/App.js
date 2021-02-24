@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Dashboard from './Dashboard';
 import UserRegister from './components/UserRegister'
 import UserVerify from './components/UserVerify'
+import Login from './components/Login'
 
 const AppRoute = ({component : Component, layout:Layout, ...rest})=>(
   <Route {...rest} render={props=>(
@@ -23,9 +24,10 @@ function App() {
 
            
       <Router>
-        <AppRoute path='/' layout={UserLayout} component={Dashboard} />
-        <AppRoute path='/user_register' layout={UserLayout} component={UserRegister} />
-        <AppRoute path='/verify_code' layout={UserLayout} component={UserVerify} />
+        <AppRoute exact path='/' layout={UserLayout} component={Dashboard} />
+        <AppRoute exact path='/user_register' layout={UserLayout} component={UserRegister} />
+        <AppRoute exact path='/verify_code' layout={UserLayout} component={UserVerify} />
+        <AppRoute exact path='/login' layout={UserLayout} component={Login} />
         
               </Router>
 

@@ -9,7 +9,7 @@ class UserLayout extends Component {
             <div>
                           <Header></Header>
                           {this.props.children}
-                          <Footer></Footer>
+                          {/* <Footer></Footer> */}
             </div>
         )
 

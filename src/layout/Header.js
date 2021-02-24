@@ -83,14 +83,20 @@ class Header extends Component {
                             </ul>
                         </li>
 
+                        <li class="nav-item ml-3">
+                             <Link href="#" to={'/user_register'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Register</Link>
+                           </li>
+                             <li class="nav-item ml-3">
+                             <Link href="#" to={'/login'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Login</Link>
+
+                        </li>
+
                     
                        
                     </ul>
 
                     <ul class="navbar-nav action">
-                        <li class="nav-item ml-3">
-                             <Link href="#" to={'/user_register'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Register</Link>
-                        </li>
+                       
                     </ul>
 
 
