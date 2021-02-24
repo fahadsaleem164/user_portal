@@ -9,6 +9,12 @@ import Dashboard from './Dashboard';
 import UserRegister from './components/UserRegister'
 import UserVerify from './components/UserVerify'
 import Login from './components/Login'
+ 
+
+
+
+
+
 
 const AppRoute = ({component : Component, layout:Layout, ...rest})=>(
   <Route {...rest} render={props=>(

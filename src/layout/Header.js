@@ -1,10 +1,63 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router , Route ,Link } from 'react-router-dom'
+import {Redirect ,BrowserRouter as Router , Route ,Link } from 'react-router-dom'
+
+
+
 
 class Header extends Component {
+    constructor(props){
+        super(props)
+
+     
+
+        const token = localStorage.getItem("token")
+
+        let loggedIn = true
+
+
+        if(token==null){
+
+            loggedIn = false
+
+        }
+
+
+        this.state ={
+            loggedIn
+        }  
+
+    }
+
+
+    logout = (event) => {
+
+        localStorage.removeItem("token");
+        this.setState({
+
+            loggedIn: false
+
+        })
+        
+
+    }
+
+
     
     render() {
+
+        // if(this.state.loggedIn === false){
+        //     return <Redirect to="/" />
+        // }
+
+
+        //  {this.state.loggedIn == false ?
+        //             <Redirect to="/login" />
+        //         :null}
+
+
         return (
+
+           
             <header id="header">
                 <nav class="navbar navbar-expand navbar-fixed" style={{background:'black'}}>
                
@@ -84,12 +137,22 @@ class Header extends Component {
                         </li>
 
                         <li class="nav-item ml-3">
-                             <Link href="#" to={'/user_register'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Register</Link>
+                             {/* <Link href="#" to={'/user_register'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Register</Link> */}
                            </li>
+
+                           {this.state.loggedIn == false ?
                              <li class="nav-item ml-3">
+                                
                              <Link href="#" to={'/login'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Login</Link>
 
-                        </li>
+                              </li>
+                            :null}
+
+                              {this.state.loggedIn == true ?
+                              <li class="nav-item ml-3">
+                                       <Link href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button" onClick={this.logout}>Logout</Link>
+                              </li>
+                              :null}
 
                     
                        

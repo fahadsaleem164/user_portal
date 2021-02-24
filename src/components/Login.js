@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import * as qs from "query-string"
-
+import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router-dom"
 
 class Login extends Component {
+
+
+    constructor(props){
+
+        super(props)
+
+        this.state = {
+
+            loggedIn : false
+           
+
+           
+            
+       }
+    }
+
 
 
     handleChange = (event) => {        
@@ -29,11 +45,6 @@ class Login extends Component {
        
             formData[key[0]] = key[1]
         }       
-
-        console.log(formData)
-
-
-
         const axiosOptions = {
 
           url: process.env.React_App_API_URL + 'users/login',
@@ -44,7 +55,7 @@ class Login extends Component {
       
         axios(axiosOptions)
           .then(response => {
-           console.log(response)
+     
                 if(response.data.status == 0){
                    
                     this.setState({
@@ -54,15 +65,15 @@ class Login extends Component {
 
                 } 
                 else {
-                    alert("Please Check your Email")
+
+                    localStorage.setItem("token" ,response.data.success)
+                   
+
                     this.setState({
-                        errorStatus : 'success', 
-                        msg:response.data.message,
+                       
+                        loggedIn : true
                         
                       })
-
-                     
-
 
                 } 
         
@@ -86,16 +97,18 @@ class Login extends Component {
                                 <div class="row">
                                     <div class="col-12 col-lg-3"></div>
                                     <div class="col-12 col-lg-6">
-                                        
+                                    {this.state.loggedIn == true?
+                                         <Redirect to="/" />
+                                    : null}
                                         <form name="user form" method="POST" onSubmit={event => this.handleSubmit(event)}>
                                             <div class="row form-group-margin">
                                                 
                                                 <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                                                      <input type="text" email=""  class="form-control field-name" placeholder="Email" onChange={this.handleChange} />
+                                                      <input type="email" name="email"  class="form-control field-name" placeholder="Email" onChange={this.handleChange} />
                                                 </div>
 
                                                 <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                                                      <input type="text" password="password"  class="form-control field-name" placeholder="Password" onChange={this.handleChange} />
+                                                      <input type="text" name="password"  class="form-control field-name" placeholder="Password" onChange={this.handleChange} />
                                                 </div>
 
                                                 <div class="col-12 input-group m-0 p-2">
