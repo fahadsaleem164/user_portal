@@ -11,18 +11,21 @@ class UserRegister extends Component {
             super(props)
 
             this.state = {
+
                 msg: '' ,
                 errorStatus : '',
                 redirect: false,
                 key : props.location.search.substring(5)
                 
            }
+
         }
 
 
-    handleChange = (event) => {        
-    
+    handleChange = (event) => {       
+        
         this.setState({[event.target.name] : event.target.value});
+
       }
 
     handleSubmit(event) {
@@ -43,7 +46,6 @@ class UserRegister extends Component {
         fd.append( 'eventId', this.state.key);
 
         
-
         for (var key of fd.entries()) {
        
             formData[key[0]] = key[1]
@@ -75,10 +77,6 @@ class UserRegister extends Component {
                         msg:response.data.message,
                         
                       })
-
-                     
-
-
                 } 
         
           })
@@ -91,6 +89,7 @@ class UserRegister extends Component {
 
 
     render() {
+
         return (
 
                 <section class="section-2"  style={{background:"#eef4ed"}}>

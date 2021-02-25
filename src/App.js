@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Dashboard from './Dashboard';
 import UserRegister from './components/UserRegister'
 import UserVerify from './components/UserVerify'
+import AddNewTeam from './components/AddNewTeam'
 import Login from './components/Login'
  
 
@@ -34,6 +35,9 @@ function App() {
         <AppRoute exact path='/user_register' layout={UserLayout} component={UserRegister} />
         <AppRoute exact path='/verify_code' layout={UserLayout} component={UserVerify} />
         <AppRoute exact path='/login' layout={UserLayout} component={Login} />
+
+        <AppRoute exact path='/new_team' layout={UserLayout} component={AddNewTeam} />
+        
         
               </Router>
 

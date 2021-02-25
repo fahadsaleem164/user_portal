@@ -47,7 +47,7 @@ class Login extends Component {
         }       
         const axiosOptions = {
 
-          url: process.env.React_App_API_URL + 'users/login',
+          url: process.env.React_App_API_URL + 'login',
           method: "post",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           data: qs.stringify(formData)
