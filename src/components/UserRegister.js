@@ -7,7 +7,15 @@ import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router
 class UserRegister extends Component {
 
         constructor(props){
+            console.log(props)
+            console.log(props.location.search.indexOf('?event='))
+            console.log(props.location.search.indexOf('&role_token='))
 
+            var res = props.location.search.substring(7, props.location.search.indexOf('&role_token='));
+
+            console.log(res)
+            var res = props.location.search.substring(props.location.search.indexOf('&role_token='));
+            console.log(res)
             super(props)
 
             this.state = {
@@ -34,17 +42,14 @@ class UserRegister extends Component {
         const formData = {}
         var fd = new FormData();
     
-        fd.append( 'name', this.state.name);
-        fd.append( 'fname', this.state.fname);
+        fd.append( 'first_name', this.state.first_name);
+        fd.append( 'last_name', this.state.last_name);
         fd.append( 'email', this.state.email);
         fd.append( 'password', this.state.password);
+        fd.append( 'confirm_password', this.state.confirm_password);
         fd.append( 'city', this.state.city);
-        fd.append( 'mobileNumber', this.state.mobileNumber);
-        fd.append( 'stdUniId', this.state.stdUniId);
-        fd.append( 'landLineNumber', this.state.landLineNumber);
-        fd.append( 'departmentId', this.state.departmentId);
-        fd.append( 'eventId', this.state.key);
-
+        fd.append( 'mobile_no', this.state.mobile_no);
+        fd.append( 'event_id', this.state.key);
         
         for (var key of fd.entries()) {
        
@@ -53,7 +58,7 @@ class UserRegister extends Component {
 
         const axiosOptions = {
 
-          url: process.env.React_App_API_URL + 'users/register',
+          url: process.env.React_App_API_URL + 'register',
           method: "post",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           data: qs.stringify(formData)
@@ -119,14 +124,14 @@ class UserRegister extends Component {
                                             <div class="row form-group-margin">
                                                 
                                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                                    <input type="text" name="name" class="form-control field-name" placeholder="Name" onChange={this.handleChange}/>
+                                                    <input type="text" name="first_name" class="form-control field-name" placeholder="First Name" onChange={this.handleChange}/>
                                                 </div>
 
                                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                                    <input type="text" name="fname" class="form-control field-name" placeholder="Last Name" onChange={this.handleChange}/>
+                                                    <input type="text" name="last_name" class="form-control field-name" placeholder="Last Name" onChange={this.handleChange}/>
                                                 </div>
 
-                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
                                                     <input type="text" name="email" class="form-control field-name" placeholder="Email" onChange={this.handleChange}/>
                                                 </div>
 
@@ -135,27 +140,16 @@ class UserRegister extends Component {
                                                 </div>
 
                                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                                    <input type="password" name="confirm_password" class="form-control field-name" placeholder="Confirm Password" onChange={this.handleChange}/>
+                                                </div>
+
+                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                                     <input type="text" name="city" class="form-control field-name" placeholder="City" onChange={this.handleChange}/>
                                                 </div>
 
                                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                                    <input type="number" name="mobileNumber" class="form-control field-name" placeholder="Mobile Number" onChange={this.handleChange}/>
+                                                    <input type="number" name="mobile_no" class="form-control field-name" placeholder="Mobile Number" onChange={this.handleChange}/>
                                                 </div>
-
-                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                                    <input type="number" class="form-control field-name" name="landLineNumber" placeholder="Landline Number" onChange={this.handleChange} />
-                                                </div>
-
-                                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                                    <input type="text" name="stdUniId" class="form-control field-name" placeholder="Student Id" onChange={this.handleChange}/>
-                                                </div>
-
-                                            
-                                                <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                                                <input type="text" name="departmentId"  class="form-control field-name" placeholder="Department" onChange={this.handleChange} />
-                                                </div>
-
-                                               
                                                 
                                                 <div class="col-12 input-group m-0 p-2">
                                                     <input type="submit" class="btn primary-button" style={{marginLeft:"45%"}}/>

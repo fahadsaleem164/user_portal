@@ -8,7 +8,10 @@ import * as qs from "query-string"
 class UserVerify extends Component {
 
     constructor(props){
+            
+
         super(props)
+        
         this.state = {
          
             msg: '' ,
@@ -33,7 +36,7 @@ class UserVerify extends Component {
         var fd = new FormData();
        
         fd.append('form-name','user form')
-        fd.append('sixDigitNumber',this.state.sixDigitNumber)
+        fd.append('verification_code',this.state.sixDigitNumber)
 
         
 
@@ -45,7 +48,7 @@ class UserVerify extends Component {
       
         const axiosOptions = {
 
-          url: process.env.React_App_API_URL + 'users/getNumber',
+          url: process.env.React_App_API_URL + 'verify_email',
           method: "post",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           data: qs.stringify(formData)
