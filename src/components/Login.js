@@ -8,13 +8,15 @@ class Login extends Component {
 
     constructor(props){
 
+        let Params = new URLSearchParams(props.location.search)
+        // console.log(Params.get('event_token'))
+
         super(props)
 
         this.state = {
 
-            loggedIn : false
-           
-
+            loggedIn : false,
+            event_token : Params.get('event_token')
            
             
        }
@@ -38,6 +40,7 @@ class Login extends Component {
 
         fd.append( 'email', this.state.email)
         fd.append( 'password', this.state.password)
+        fd.append('token' , this.state.event_token)
 
         
 
@@ -52,8 +55,11 @@ class Login extends Component {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           data: qs.stringify(formData)
         }
+
+        console.log(formData)
       
         axios(axiosOptions)
+
           .then(response => {
      
                 if(response.data.status == 0){
@@ -64,9 +70,13 @@ class Login extends Component {
                       })
 
                 } 
+                
                 else {
 
-                    localStorage.setItem("token" ,response.data.success)
+                    console.log(response)
+
+                    localStorage.setItem("token" ,response.data.data.token)
+                    localStorage.setItem("role" ,response.data.data.roles)
                    
 
                     this.setState({

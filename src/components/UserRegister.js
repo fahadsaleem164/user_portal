@@ -7,24 +7,17 @@ import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router
 class UserRegister extends Component {
 
         constructor(props){
-            console.log(props)
-            console.log(props.location.search.indexOf('?event='))
-            console.log(props.location.search.indexOf('&role_token='))
 
-            var res = props.location.search.substring(7, props.location.search.indexOf('&role_token='));
+            let Params = new URLSearchParams(props.location.search)
 
-            console.log(res)
-            var res = props.location.search.substring(props.location.search.indexOf('&role_token='));
-            console.log(res)
             super(props)
 
             this.state = {
-
                 msg: '' ,
                 errorStatus : '',
                 redirect: false,
-                key : props.location.search.substring(5)
-                
+                role_token : Params.get('role_token') ,
+                event_token : Params.get('event')
            }
 
         }
@@ -42,14 +35,15 @@ class UserRegister extends Component {
         const formData = {}
         var fd = new FormData();
     
-        fd.append( 'first_name', this.state.first_name);
-        fd.append( 'last_name', this.state.last_name);
-        fd.append( 'email', this.state.email);
-        fd.append( 'password', this.state.password);
-        fd.append( 'confirm_password', this.state.confirm_password);
-        fd.append( 'city', this.state.city);
-        fd.append( 'mobile_no', this.state.mobile_no);
-        fd.append( 'event_id', this.state.key);
+        fd.append('first_name', this.state.first_name);
+        fd.append('last_name', this.state.last_name);
+        fd.append('email', this.state.email);
+        fd.append('password', this.state.password);
+        fd.append('confirm_password', this.state.confirm_password);
+        fd.append('city', this.state.city);
+        fd.append('mobile_no', this.state.mobile_no);
+        fd.append('role_token' ,  this.state.role_token)
+        fd.append('event_token', this.state.event_token);
         
         for (var key of fd.entries()) {
        
