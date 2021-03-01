@@ -17,7 +17,7 @@ class Login extends Component {
         this.state = {
 
             loggedIn : false,
-            event_token : Params.get('event_token'),
+            event_token : Params.get('event'),
             user_type : ''
            
             
@@ -63,6 +63,7 @@ class Login extends Component {
         axios(axiosOptions)
 
           .then(response => {
+              console.log(response)
      
                 if(response.data.status == 0){
                    
