@@ -9,6 +9,7 @@ class Login extends Component {
     constructor(props){
 
         let Params = new URLSearchParams(props.location.search)
+
         // console.log(Params.get('event_token'))
 
         super(props)
@@ -16,7 +17,8 @@ class Login extends Component {
         this.state = {
 
             loggedIn : false,
-            event_token : Params.get('event_token')
+            event_token : Params.get('event_token'),
+            user_type : ''
            
             
        }
@@ -40,7 +42,7 @@ class Login extends Component {
 
         fd.append( 'email', this.state.email)
         fd.append( 'password', this.state.password)
-        fd.append('token' , this.state.event_token)
+        fd.append('event_token' , this.state.event_token)
 
         
 
@@ -56,7 +58,7 @@ class Login extends Component {
           data: qs.stringify(formData)
         }
 
-        console.log(formData)
+   
       
         axios(axiosOptions)
 
@@ -70,26 +72,29 @@ class Login extends Component {
                       })
 
                 } 
-                
+
                 else {
 
                     console.log(response)
 
                     localStorage.setItem("token" ,response.data.data.token)
                     localStorage.setItem("role" ,response.data.data.roles)
+                    localStorage.setItem("event_token" ,this.state.event_token)
                    
 
                     this.setState({
                        
-                        loggedIn : true
-                        
+                        loggedIn : true , 
+                        user_type :response.data.data.roles 
                       })
 
                 } 
         
           })
           .catch(err =>
+
             console.log(err)
+
           )
       }
 
@@ -108,7 +113,13 @@ class Login extends Component {
                                     <div class="col-12 col-lg-3"></div>
                                     <div class="col-12 col-lg-6">
                                     {this.state.loggedIn == true?
-                                         <Redirect to="/" />
+                                     <div>
+                                             {this.state.user_type == 'mentor'?
+                                                 <Redirect to="/mentor_profile" />    
+                                            : null}
+
+                                        
+                                    </div>
                                     : null}
                                         <form name="user form" method="POST" onSubmit={event => this.handleSubmit(event)}>
                                             <div class="row form-group-margin">

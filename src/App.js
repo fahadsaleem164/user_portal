@@ -12,6 +12,7 @@ import UserRegister from './components/UserRegister'
 import UserVerify from './components/UserVerify'
 import AddNewTeam from './components/AddNewTeam'
 import MentorProfile from './components/MentorProfile'
+import UserProfile from './components/UserProfile'
 import Login from './components/Login'
  
 
@@ -41,7 +42,7 @@ function App() {
 
         <AppRoute exact path='/new_team' layout={UserLayout} component={AddNewTeam} />
         <AppRoute exact path='/mentor_profile' layout={UserLayout} component={MentorProfile} />
-        
+        <AppRoute exact path='/user_profile' layout={UserLayout} component={UserProfile} />
         
               </Router>
 
