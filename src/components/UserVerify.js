@@ -98,7 +98,9 @@ class UserVerify extends Component {
             <section class="section-2"  style={{background:"#eef4ed"}}>
                         <div class="container">
                             <div class="row">
-                                <div class="col-12"></div>
+                            <div class="col-12 col-lg-4"></div>
+                            <div class="col-12 col-lg-8">
+                               
 
 
                         <form name="user form" method="POST" onSubmit={event => this.handleSubmit(event)}>
@@ -118,17 +120,22 @@ class UserVerify extends Component {
 
                             <div class="row form-group-margin">
                                 
-                                <div class="col-12 m-0 p-2 input-group">
+                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <input type="text" name="sixDigitNumber" class="form-control field-name" placeholder="Place Your Code Here" onChange={this.handleChange}/>
                                 </div>
                                 
+                                {/* <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                    <input type="submit" value="Verify" class="btn primary-button" style={{marginLeft:"45%"}}/>
+                                </div> */}
+
                                 <div class="col-12 input-group m-0 p-2">
-                                    <input type="submit" class="btn primary-button" style={{marginLeft:"45%"}}/>
-                                </div>
+                                                    <input type="submit" value="Register" class="btn primary-button" style={{marginLeft:"18%"}}/>
+                                                </div>
 
                             </div>
                         </form>
-
+                </div>
+                <div class="col-12 col-lg-2"></div>
 
                     </div>
                         </div>

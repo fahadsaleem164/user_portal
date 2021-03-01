@@ -129,7 +129,7 @@ class Login extends Component {
                                                 </div>
 
                                                 <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                                                      <input type="text" name="password"  class="form-control field-name" placeholder="Password" onChange={this.handleChange} />
+                                                      <input type="password" name="password"  class="form-control field-name" placeholder="Password" onChange={this.handleChange} />
                                                 </div>
 
                                                 <div class="col-12 input-group m-0 p-2">

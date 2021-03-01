@@ -61,8 +61,8 @@ class Header extends Component {
                             <a href="#" class="nav-link">About</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/can-and-msf/" target="_blank">Organizers</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/sponsors_and_partners/" target="_blank">Sponsors/Partners</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/can-and-msf/">Organizers</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/sponsors_and_partners/">Sponsors/Partners</a>
                                 </li>
                             </ul>
                         </li>
@@ -71,8 +71,8 @@ class Header extends Component {
                             <Link class="nav-link" to={'/blue_economy'}>Blue Economy</Link>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/blue_economy/" target="_blank" > Thematic Area</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/faqs" target="_blank" > FAQ </a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/blue_economy/" > Thematic Area</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/faqs" > FAQ </a>
                                 </li>
                             </ul>
                         </li>
@@ -81,10 +81,10 @@ class Header extends Component {
                             <a href="#" class="nav-link">Ideas<i class="icon-arrow-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/bestartup/" target="_blank">Startups</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/smallscale/" target="_blank">Small Scale</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/medscale/" target="_blank">Medium Scale</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/largescale/" target="_blank">Large Scale</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/bestartup/">Startups</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/smallscale/">Small Scale</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/medscale/">Medium Scale</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/largescale/">Large Scale</a>
                                 </li>
                             </ul>
                         </li>
@@ -95,33 +95,33 @@ class Header extends Component {
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown">
                                   
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/incubation/" target="_blank">Incubation Tracks</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/funding/" target="_blank">Funding Orgnizations</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/business/" target="_blank">Business Competition</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/international/" target="_blank">International Universities</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/incubation/">Incubation Tracks</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/funding/">Funding Orgnizations</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/business/">Business Competition</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/international/">International Universities</a>
                                     
                                 </li>
                             </ul>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/bechallenge/" target="_blank"> Challenge 2021 </a>
+                            <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/bechallenge/"> Challenge 2021 </a>
                         </li>
 
                         <li class="nav-item dropdown">
-                              <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/ideathon/" target="_blank"> Ideathon</a>
+                              <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/ideathon/"> Ideathon</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                             <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/resources/" target="_blank"> Resources </a>
+                             <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/resources/"> Resources </a>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link">News & Events<i class="icon-arrow-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item dropdown"> 
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/news/" target="_blank"> News</a>
-                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/events/" target="_blank"> Events </a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/news/"> News</a>
+                                    <a class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/events/"> Events </a>
                                 </li>
                             </ul>
                         </li>
