@@ -102,7 +102,7 @@ class MentorRegister extends Component {
 
         return (
 
-                <section class="section-2"  style={{background:"#eef4ed"}}>
+                <section >
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 col-lg-3"></div>
