@@ -156,7 +156,33 @@ class Header extends Component {
                               </li>
                               :null}
                               </>
-                              :null}                       
+                              :null}         
+
+                             {/* if login as mentor then this will show */}
+                             {this.state.logged_in == true ?
+                              <>
+                                {this.state.role == 'mentor' ?
+                              
+                              <li class="nav-item ml-3">
+                                     <li class="nav-item dropdown">
+                                                    <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li class="nav-item dropdown">
+                                                            <Link class="nav-link" to={'/user_profile'}>Assigned to a team/idea</Link> 
+                                                            <Link class="nav-link" to={'/add_new_team'}>Evaluate Teams</Link>
+                                                            <hr></hr>
+                                                            <Link class="nav-link" to={''}  onClick={this.logout}>Logout</Link>   
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                              </li>
+                              :null}
+                              </>
+                              :null}         
+
+
+
+
                     </ul>
 
                     <ul class="navbar-nav action">
