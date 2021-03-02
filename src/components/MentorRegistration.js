@@ -52,7 +52,7 @@ class MentorRegister extends Component {
 
         const axiosOptions = {
 
-          url: process.env.React_App_API_URL + 'register',
+          url: process.env.React_App_API_URL + 'signup',
           method: "post",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           data: qs.stringify(formData)
