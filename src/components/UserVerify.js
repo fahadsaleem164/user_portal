@@ -129,7 +129,7 @@ class UserVerify extends Component {
                                 </div> */}
 
                                 <div class="col-12 input-group m-0 p-2">
-                                                    <input type="submit" value="Register" class="btn primary-button" style={{marginLeft:"18%"}}/>
+                                                    <input type="submit" value="Verify" class="btn primary-button" style={{marginLeft:"18%"}}/>
                                                 </div>
 
                             </div>

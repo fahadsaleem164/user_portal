@@ -70,10 +70,10 @@ class UserRegister extends Component {
 
                 } 
                 else {
-                    alert("Please Check your Email")
+                   
                     this.setState({
                         errorStatus : 'success', 
-                        msg:response.data.message,
+                        msg:'Please Check your Email for verification',
                         
                       })
                 } 
@@ -109,7 +109,7 @@ class UserRegister extends Component {
                                                 <p style={{color:'green'}}>{this.state.msg}
                                                 
 
-                                                <Redirect to="/verify_code"  />
+                                                {/* <Redirect to="/verify_code"  /> */}
                                                 </p>
                                                 </div>
                                             :null}
@@ -142,11 +142,11 @@ class UserRegister extends Component {
                                                 </div>
 
                                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                                    <input type="number" name="mobile_no" class="form-control field-name" placeholder="Mobile Number" onChange={this.handleChange}/>
+                                                    <input type="text" name="mobile_no" class="form-control field-name" placeholder="Mobile Number" onChange={this.handleChange}/>
                                                 </div>
                                                 
                                                 <div class="col-12 input-group m-0 p-2">
-                                                    <input type="submit" class="btn primary-button" style={{marginLeft:"45%"}}/>
+                                                    <input type="submit" class="btn primary-button" value="Register" style={{marginLeft:"45%"}}/>
                                                 </div>
                                             </div>
                                         </form>

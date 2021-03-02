@@ -55,7 +55,7 @@ class Header extends Component {
 
                     <ul class="navbar-nav items">
                         <li class="nav-item dropdown">
-                            <a  class="nav-link"><Link to={'/'}>HOME</Link></a>
+                            <a  class="nav-link" href="https://jovial-mestorf-f7052e.netlify.app/">HOME</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link">About</a>
@@ -125,7 +125,12 @@ class Header extends Component {
                                 </li>
                             </ul>
                         </li>
-
+                        
+                        {/* <ul class="navbar-nav action">
+                        <li class="nav-item ml-3">
+                             <Link href="#" to={'/contact_us'}  style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">CONTACT US</Link>
+                        </li>
+                    </ul> */}
                        
 
                         

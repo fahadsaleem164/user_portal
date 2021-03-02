@@ -63,7 +63,7 @@ class Login extends Component {
         axios(axiosOptions)
 
           .then(response => {
-              console.log(response)
+           
      
                 if(response.data.status == 0){
                    
@@ -119,6 +119,9 @@ class Login extends Component {
                                                  <Redirect to="/mentor_profile" />    
                                             : null}
 
+                                            {this.state.user_type == 'student'?
+                                                 <Redirect to="/user_profile" />    
+                                            : null}
                                         
                                     </div>
                                     : null}
