@@ -122,15 +122,17 @@ class Login extends Component {
                                             <div class="row form-group-margin">
                                                 
                                                 <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                                                      <input type="email" name="email"  class="form-control field-name" placeholder="Email" onChange={this.handleChange} />
+                                                     <label>Email</label>
+                                                      <input type="email" name="email"  class="form-control field-name" onChange={this.handleChange} />
                                                 </div>
 
                                                 <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                                                      <input type="password" name="password"  class="form-control field-name" placeholder="Password" onChange={this.handleChange} />
+                                                      <label>Password</label>
+                                                      <input type="password" name="password"  class="form-control field-name" onChange={this.handleChange} />
                                                 </div>
 
                                                 <div class="col-12 input-group m-0 p-2">
-                                                    <input type="submit" class="btn primary-button" value="Login" style={{marginLeft:"45%"}}/>
+                                                    <input type="submit" class="btn primary-button" value="Login" style={{marginLeft:"35%" ,  width:'198px'}}/>
                                                 </div>
 
 

@@ -150,7 +150,7 @@ class UserRegister extends Component {
                                                 </div>
                                                 
                                                 <div class="col-12 input-group m-0 p-2">
-                                                    <input type="submit" class="btn primary-button" value="Register" style={{marginLeft:"45%"}}/>
+                                                    <input type="submit" class="btn primary-button" value="Register" style={{marginLeft:"33%", width:'198px'}}/>
                                                 </div>
                                             </div>
                                         </form>
