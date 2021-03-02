@@ -27,7 +27,7 @@ class UserRegister extends Component {
                 student_id : '',
                 class_read : '',
                 year_of_study : '',
-                field_of_study : '',
+                field_of_study : null,
                 linkedin_profile : null
            }
 
@@ -55,21 +55,82 @@ class UserRegister extends Component {
           axios(axiosOptions)
         
           .then(response => {
+
             console.log(response)
+
+            if(response.data.data.campus){
+
+                this.setState ({
+                    campus : response.data.data.campus
+                })
+
+            }
+
+            if(response.data.data.student_id){
+
+                this.setState ({
+                    student_id : response.data.data.student_id
+                })
+
+            }
+
+            if(response.data.data.class){
+
+                this.setState ({
+                    class_read : response.data.data.class
+                })
+
+            }
+            // field_of_study : response.data.data.field_of_study,
+
+            if(response.data.data.field_of_study && response.data.data.field_of_study != "null"){
+
+                this.setState ({
+                    field_of_study : response.data.data.field_of_study
+                })
+
+            }
+
+
+            if(response.data.data.university){
+
+                this.setState ({
+                    university : response.data.data.university
+                })
+
+            }
+
+            if(response.data.data.country){
+
+                this.setState ({
+                    country : response.data.data.country
+                })
+
+            }
+
+            if(response.data.data.address){
+
+                this.setState ({
+                    address : response.data.data.address
+                })
+
+            } 
+
+            if(response.data.data.linkedin_profile && response.data.data.linkedin_profile != "null"){
+
+                this.setState ({
+                    linkedin_profile : response.data.data.linkedin_profile
+                })
+
+            } 
+
+
               this.setState({
             
                first_name : response.data.data.first_name , 
                last_name : response.data.data.last_name ,
                city : response.data.data.city,
                mobile_no :response.data.data.mobile_no,
-               address : response.data.data.address,
-               country : response.data.data.country,
-               university : response.data.data.university,
-               campus :response.data.data.campus,
-               student_id : response.data.data.student_id,
-               class_read :response.data.data.class,
-               field_of_study : response.data.data.field_of_study,
-               linkedin_profile : response.data.data.linkedin_profile,
                event_token : this.state.event_token
   
               })
@@ -158,7 +219,7 @@ class UserRegister extends Component {
 
         return (
 
-            <section class="section-2"  style={{background:"#eef4ed"}}>
+            <section>
             <div class="container" >
                 <div class="row">
                     <div class="col-12 col-lg-3"></div>
@@ -185,79 +246,85 @@ class UserRegister extends Component {
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="first_name">
                                         First Name
+
+                                        </label>
                                         <input type="text" name="first_name" value={this.state.first_name} class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
+                                    
                                 </div>
 ​
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="last_name">
                                         Last Name
+                                        </label>
                                         <input type="text" name="last_name" value={this.state.last_name} class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
+                                    
                                 </div>
 ​
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="city">
                                         City
-                                        <input type="text" name="city" value={this.state.city} class="form-control field-name" onChange={this.handleChange}/>
                                     </label>
+                                        <input type="text" name="city" value={this.state.city} class="form-control field-name" onChange={this.handleChange}/>
+                                    
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                    <label for="country">
+                                        Country</label>
+                                        <input type="text" name="country" value="Pakistan" readOnly="" class="form-control field-name" onChange={this.handleChange}/>
+                                    
                                 </div>
 ​
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="mobile_no">
-                                        Mobile Number
+                                        Mobile Number</label>
                                         <input type="text" name="mobile_no" value={this.state.mobile_no} class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
+                                    
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
+                                    <label for="student_id">
+                                        Student ID </label>
+                                        <input type="text"  name="student_id" value={this.state.student_id} class="form-control field-name" onChange={this.handleChange}/>
+                                   
                                 </div>
 ​
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="which_university">
-                                        University
+                                        University</label>
                                         <input type="text" name="university" value={this.state.university}  class="form-control field-name"  onChange={this.handleChange}/>
-                                    </label>
+                                    
                                 </div>
                                 
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="campus">
-                                        Campus
+                                        Campus</label>
                                         <input type="text" name="campus" value={this.state.campus} class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
+                                    
                                 </div>
 ​
-                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                    <label for="country">
-                                        Country
-                                        <input type="text" name="country" value={this.state.country} class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
-                                </div>
-​
-                                <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                    <label for="student_id">
-                                        Student ID
-                                        <input type="text"  name="student_id" value={this.state.student_id} class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
-                                </div>
-                                
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="class">
                                         Class/Year of Study
+                                        </label>
                                         <input type="text" name="class_read"  value={this.state.class_read} class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
+                                   
                                 </div>
 
-​
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="field_of_study">
                                         Field of Study
+                                        </label>
                                         <input type="text" name="field_of_study" value={this.state.field_of_study} class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
+                                    
                                 </div>
 
                                 <div class="col-12 input-group m-0 p-2">
                                     <label for="field_of_study">
                                         Linkedin Profile
+                                        </label>
                                         <input type="text" name="linkedin_profile" value={this.state.linkedin_profile}  class="form-control field-name" onChange={this.handleChange}/>
-                                    </label>
+                                    
                                 </div>
 ​
                                 <div class="col-12 input-group m-0 p-2">

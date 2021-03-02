@@ -2,21 +2,19 @@ import React, { Component } from 'react';
 import {Redirect ,BrowserRouter as Router , Route ,Link } from 'react-router-dom'
 
 
-
-
 class Header extends Component {
+    
     constructor(props){
+       
         super(props)
 
         const token = localStorage.getItem("token")
         const role = localStorage.getItem("role")
-
         let logged_in = true
 
         if(token==null){
             logged_in = false
         }
-
 
         this.state ={
             logged_in,
@@ -30,7 +28,7 @@ class Header extends Component {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("event_token");
-        
+
         this.setState({
             logged_in: false
 
@@ -124,15 +122,6 @@ class Header extends Component {
                             </ul>
                         </li>
                         
-                        {/* <ul class="navbar-nav action">
-                        <li class="nav-item ml-3">
-                             <Link href="#" to={'/contact_us'}  style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">CONTACT US</Link>
-                        </li>
-                    </ul> */}
-                       
-
-                        
-
                         <li class="nav-item ml-3">
                              {/* <Link href="#" to={'/user_register'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Register</Link> */}
                            </li>
@@ -179,6 +168,11 @@ class Header extends Component {
             </nav> 
 
   </header>
+
+        
+
+
+
         );
     }
 }

@@ -17,12 +17,7 @@ import AddNewTeam from './components/student/AddNewTeam'
 import RegisterIdea from './components/student/RegisterIdea'
 import Login from './components/Login'
  
-
-
-
-
-
-
+// it is used to display layout with diffrent component and layout
 const AppRoute = ({component : Component, layout:Layout, ...rest})=>(
   <Route {...rest} render={props=>(
     <Layout><Component {...props}></Component></Layout>
@@ -32,6 +27,7 @@ const AppRoute = ({component : Component, layout:Layout, ...rest})=>(
 
 
 function App() {
+  
 
   return (
 
@@ -46,9 +42,8 @@ function App() {
         <AppRoute exact path='/new_team' layout={UserLayout} component={AddNewTeam} />
         <AppRoute exact path='/mentor_profile' layout={UserLayout} component={MentorProfile} />
         <AppRoute exact path='/register_idea' layout={UserLayout} component={RegisterIdea} />
-        <AppRoute exact path='/user_profile' layout={UserLayout} component={UserProfile} />
-        
-              </Router>
+        <AppRoute exact path='/user_profile' layout={UserLayout} component={UserProfile} />  
+      </Router>
 
 
       )
