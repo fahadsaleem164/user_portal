@@ -248,7 +248,7 @@ class MentorProfile extends Component {
                                 </div>
                                
                                 <div class="col-12 input-group m-0 p-2">
-                                    <input type="submit" class="btn primary-button" value="update" style={{marginLeft:"33%", width:'198px'}}/>
+                                    <input type="submit" class="btn primary-button" value="Update" style={{marginLeft:"33%", width:'198px'}}/>
                                 </div>
                             </div>
                         </form>
