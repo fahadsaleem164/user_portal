@@ -28,7 +28,7 @@ class UserRegister extends Component {
                 class_read : '',
                 year_of_study : '',
                 field_of_study : '',
-                linkedin_profile : ''
+                linkedin_profile : null
            }
 
         }
@@ -44,7 +44,7 @@ class UserRegister extends Component {
       componentDidMount(){
 
         const axiosOptions = {
-            url: process.env.React_App_API_URL + 'student/get_profile?event_token='+this.state.event_token,
+            url: process.env.React_App_API_URL + 'student/get_profile?event_token='+ this.state.event_token,
             method: "get",
             headers: {
                 'Authorization': `Bearer ${this.state.token}`
@@ -87,7 +87,9 @@ class UserRegister extends Component {
     handleSubmit(event) {
 
         event.preventDefault()
+
         const formData = {}
+
         var fd = new FormData();
     
         fd.append('first_name', this.state.first_name);
@@ -107,7 +109,10 @@ class UserRegister extends Component {
         for (var key of fd.entries()) {
        
             formData[key[0]] = key[1]
-        }       
+        }      
+        
+        
+        console.log(formData)
 
         const axiosOptions = {
 
@@ -122,7 +127,7 @@ class UserRegister extends Component {
       
         axios(axiosOptions)
           .then(response => {
-           
+           console.log(response)
                 if(response.data.status == 0){
                    
                     this.setState({
@@ -159,7 +164,7 @@ class UserRegister extends Component {
                     <div class="col-12 col-lg-3"></div>
                     <div class="col-12 col-lg-6">
                         <h1 style={{textAlign:'center'}}>User Profile</h1>
-                        <form name="user form" method="POST" onSubmit={event => this.handleSubmit(event)}>
+                        <form name="" method="POST" onSubmit={event => this.handleSubmit(event)}>
                         {this.state.errorStatus == 'error'?
                             <div class="col-12 m-0 p-2 input-group">
                                 <p style={{color:'red'}}>{this.state.msg}</p>
@@ -251,13 +256,12 @@ class UserRegister extends Component {
                                 <div class="col-12 input-group m-0 p-2">
                                     <label for="field_of_study">
                                         Linkedin Profile
-                                        <input type="text" name="linkedin_profile" value={this.state.linkedin_profile} class="form-control field-name" onChange={this.handleChange}/>
+                                        <input type="text" name="linkedin_profile" value={this.state.linkedin_profile}  class="form-control field-name" onChange={this.handleChange}/>
                                     </label>
                                 </div>
 ​
-​
                                 <div class="col-12 input-group m-0 p-2">
-                                    <input type="submit" value="Register" class="btn primary-button" style={{marginLeft:"45%"}}/>
+                                    <input type="submit" value="Register"  class="btn primary-button" style={{marginLeft:"45%"}}/>
                                 </div>
                             </div>
                         </form>

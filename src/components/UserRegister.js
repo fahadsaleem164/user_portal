@@ -52,9 +52,13 @@ class UserRegister extends Component {
 
         const axiosOptions = {
 
-          url: process.env.React_App_API_URL + 'register',
+          url: process.env.React_App_API_URL + 'signup',
           method: "post",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          headers: { 
+              "Content-Type": "application/x-www-form-urlencoded",
+              "X-Requested-With": "XMLHttpRequest"
+              
+         },
           data: qs.stringify(formData)
         }
       

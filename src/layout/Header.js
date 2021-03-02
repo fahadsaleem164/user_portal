@@ -8,33 +8,31 @@ class Header extends Component {
     constructor(props){
         super(props)
 
-     
-
         const token = localStorage.getItem("token")
+        const role = localStorage.getItem("role")
 
-        let loggedIn = true
-
+        let logged_in = true
 
         if(token==null){
-
-            loggedIn = false
-
+            logged_in = false
         }
 
 
         this.state ={
-            loggedIn
+            logged_in,
+            role
         }  
 
     }
 
-
     logout = (event) => {
 
         localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("event_token");
+        
         this.setState({
-
-            loggedIn: false
+            logged_in: false
 
         })
         
@@ -139,7 +137,7 @@ class Header extends Component {
                              {/* <Link href="#" to={'/user_register'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Register</Link> */}
                            </li>
 
-                           {this.state.loggedIn == false ?
+                           {this.state.logged_in == false ?
                              <li class="nav-item ml-3">
                                 
                              <Link href="#" to={'/login'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Login</Link>
@@ -147,16 +145,20 @@ class Header extends Component {
                               </li>
                             :null}
 
-                              {this.state.loggedIn == true ?
+                            {/* if login as student then this will show */}
+                              {this.state.logged_in == true ?
+                              <>
+                                {this.state.role == 'student' ?
+                              
                               <li class="nav-item ml-3">
-                                       {/* <Link href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button" onClick={this.logout}>Logout</Link> */}
                              
                                      <li class="nav-item dropdown">
                                                     <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
                                                     <ul class="dropdown-menu">
-                                                        <li class="nav-item dropdown"> 
-                                                            <Link class="nav-link" to={''}>Add New Team</Link>
-                                                            <Link class="nav-link" to={''}>Add New Idea</Link>
+                                                        <li class="nav-item dropdown">
+                                                            <Link class="nav-link" to={'/user_profile'}>Edit Profile</Link> 
+                                                            <Link class="nav-link" to={'/add_new_team'}>New Team</Link>
+                                                            <Link class="nav-link" to={'/register_idea'}>Register an Idea</Link>
                                                             <hr></hr>
                                                             <Link class="nav-link" to={''}  onClick={this.logout}>Logout</Link>   
                                                         </li>
@@ -164,9 +166,8 @@ class Header extends Component {
                                                 </li>
                               </li>
                               :null}
-
-                    
-                       
+                              </>
+                              :null}                       
                     </ul>
 
                     <ul class="navbar-nav action">

@@ -9,16 +9,14 @@ class Login extends Component {
     constructor(props){
 
         let Params = new URLSearchParams(props.location.search)
-
-        // console.log(Params.get('event_token'))
-
         super(props)
 
         this.state = {
 
-            loggedIn : false,
+            logged_in : false,
             event_token : Params.get('event'),
-            user_type : ''
+            user_type : '',
+            error_status : ''
            
             
        }
@@ -44,8 +42,6 @@ class Login extends Component {
         fd.append( 'password', this.state.password)
         fd.append('event_token' , this.state.event_token)
 
-        
-
         for (var key of fd.entries()) {
        
             formData[key[0]] = key[1]
@@ -58,73 +54,70 @@ class Login extends Component {
           data: qs.stringify(formData)
         }
 
-   
-      
         axios(axiosOptions)
 
           .then(response => {
-           
-     
+
                 if(response.data.status == 0){
-                   
+                 
                     this.setState({
-                        errorStatus : 'error',
+                        error_status : 'error',
                         msg:response.data.message,
-                      })
+                    })
 
-                } 
-
-                else {
-
-                    console.log(response)
-
+                } else {
                     localStorage.setItem("token" ,response.data.data.token)
                     localStorage.setItem("role" ,response.data.data.roles)
                     localStorage.setItem("event_token" ,this.state.event_token)
-                   
-
                     this.setState({
-                       
-                        loggedIn : true , 
+                        error_status : 'success',
+                        logged_in : true , 
                         user_type :response.data.data.roles 
-                      })
-
+                    })
                 } 
         
-          })
-          .catch(err =>
-
+          }).catch(err =>
             console.log(err)
-
           )
       }
-
-
-
-
-
 
     render() {
 
         return (
-          
                     <section class="section-2"  style={{background:"#eef4ed"}}>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 col-lg-3"></div>
                                     <div class="col-12 col-lg-6">
-                                    {this.state.loggedIn == true?
-                                     <div>
-                                             {this.state.user_type == 'mentor'?
-                                                 <Redirect to="/mentor_profile" />    
-                                            : null}
 
-                                            {this.state.user_type == 'student'?
-                                                 <Redirect to="/user_profile" />    
-                                            : null}
-                                        
-                                    </div>
-                                    : null}
+                                        {/* Error message diplay */}
+                  
+                                    {this.state.error_status == 'error'?
+                                                    <>
+                                                        <div> 
+                                                            <p style={{color:'red'}}>{this.state.msg}</p>
+                                                        </div>  
+                                                    </>
+                                        : null}
+                  
+                                        {/* Success message display */}
+
+                                        {this.state.error_status == 'success'?
+                                                    <>
+                                                        {this.state.logged_in == true?
+                                                        <div>
+                                                                {this.state.user_type == 'mentor'?
+                                                                    <Redirect to="/mentor_profile" />    
+                                                                : null}
+
+                                                                {this.state.user_type == 'student'?
+                                                                    <Redirect to="/user_profile" />    
+                                                                : null}
+                                                            
+                                                        </div>
+                                                        : null}
+                                                    </>
+                                        : null}
                                         <form name="user form" method="POST" onSubmit={event => this.handleSubmit(event)}>
                                             <div class="row form-group-margin">
                                                 

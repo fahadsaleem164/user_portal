@@ -121,7 +121,8 @@ class UserVerify extends Component {
                             <div class="row form-group-margin">
                                 
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
-                                    <input type="text" name="sixDigitNumber" class="form-control field-name" placeholder="Place Your Code Here" onChange={this.handleChange}/>
+                                    <label>Place Your Code Here</label>
+                                    <input type="text" name="sixDigitNumber" class="form-control field-name" onChange={this.handleChange}/>
                                 </div>
                                 
                                 {/* <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
