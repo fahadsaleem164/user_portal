@@ -65,7 +65,8 @@ class Login extends Component {
                         msg:response.data.message,
                     })
 
-                } else {
+                } else if(response.data.status == 1) {
+                    
                     localStorage.setItem("token" ,response.data.data.token)
                     localStorage.setItem("role" ,response.data.data.roles)
                     localStorage.setItem("event_token" ,this.state.event_token)

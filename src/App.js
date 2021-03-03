@@ -2,9 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router , Route ,Link ,Redirect } from 'react-router-dom'  
 import { Component } from 'react';
-
-
-
 import UserLayout from './layout/UserLayout'
 import Home from './components/Home'
 import Dashboard from './Dashboard';
@@ -17,6 +14,7 @@ import AddNewTeam from './components/student/AddNewTeam'
 import RegisterIdea from './components/student/RegisterIdea'
 import Login from './components/Login'
  
+
 // it is used to display layout with diffrent component and layout
 const AppRoute = ({component : Component, layout:Layout, ...rest})=>(
   <Route {...rest} render={props=>(

@@ -56,22 +56,77 @@ class MentorProfile extends Component {
           axios(axiosOptions)
         
           .then(response => {
+
             console.log(response)
+
+            if(response.data.data.address && response.data.data.address != "null"){
+
+                this.setState ({
+                    address : response.data.data.address
+                })
+
+            }
+
+            if(response.data.data.country && response.data.data.country != "null"){
+
+                this.setState ({
+                    country : response.data.data.country
+                })
+
+            }
+
+
+            if(response.data.data.org_name && response.data.data.org_name != "null"){
+
+                this.setState ({
+                    org_name : response.data.data.org_name
+                })
+
+            }
+
+
+            if(response.data.data.designation && response.data.data.designation != "null"){
+
+                this.setState ({
+                    designation : response.data.data.designation
+                })
+
+            }
+
+            if(response.data.data.education && response.data.data.education != "null"){
+
+                this.setState ({
+                    education : response.data.data.education
+                })
+
+            }
+
+            if(response.data.data.work_exp && response.data.data.work_exp != "null"){
+
+                this.setState ({
+                    work_exp : response.data.data.work_exp
+                })
+
+            }
+
+            if(response.data.data.areas_of_coach && response.data.data.areas_of_coach != "null" ){
+
+                this.setState ({
+                    areas_of_coach : response.data.data.areas_of_coach
+                })
+
+            }
+
+           
+
+
               this.setState({
             
                first_name : response.data.data.first_name , 
                last_name : response.data.data.last_name ,
                city : response.data.data.city,
                mobile_no :response.data.data.mobile_no,
-               address : response.data.data.address,
-               country : response.data.data.country,
-               org_name : response.data.data.org_name,
-               designation :response.data.data.designation,
-               education : response.data.data.education,
-               work_exp :response.data.data.work_exp,
-               areas_of_coach : response.data.data.areas_of_coach,
                event_token : this.state.event_token
-  
               })
 
           })
@@ -125,6 +180,9 @@ class MentorProfile extends Component {
       
         axios(axiosOptions)
           .then(response => {
+
+
+
            
                 if(response.data.status == 0){
                    
@@ -209,7 +267,7 @@ class MentorProfile extends Component {
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                     <label for="country">
                                         Country
-                                        <input type="text" name="country" class="form-control field-name" value={this.state.country} onChange={this.handleChange}/>
+                                        <input type="text" name="country" class="form-control field-name" value="Pakistan" readOnly onChange={this.handleChange}/>
                                     </label>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
