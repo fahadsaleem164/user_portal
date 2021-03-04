@@ -4,9 +4,21 @@ import {connect } from 'react-redux'
 
 class RegisterIdea extends Component {
     constructor(props){
-        console.log(props.login_status)
-
         super(props)
+       
+        if(localStorage.getItem("state_full_lorem_ipsum") == null){
+          
+              this.state = {
+  
+                  state_full_lorem_ipsum : false
+              
+              } 
+        } else if(localStorage.getItem("state_full_lorem_ipsum") == 'true') {
+             
+              this.state = {
+                  state_full_lorem_ipsum : true
+              }
+        }
 
 
     }
@@ -15,12 +27,28 @@ class RegisterIdea extends Component {
         return (
             <div>
                     {/* First of all check user login or not */}
-                    {this.props.login_status == false?
-
+                    {this.state.state_full_lorem_ipsum == false?
+                    <>
                             <Redirect to='/' />
+                    </>
+                    :null}
+                     {this.state.state_full_lorem_ipsum == true?
+                        <>
+                    <h1>Register an idea</h1>
+                    <h1>Register an idea</h1>
+                    <h1>Register an idea</h1>
+                    <h1>Register an idea</h1>
+                    <h1>Register an idea</h1>
+                    <h1>Register an idea</h1>
+                    <h1>Register an idea</h1>
+                    <h1>Register an idea</h1>
+
+</>
                     :null}
 
-                    <h1>Add New Idea</h1>
+
+
+                    
             </div>
         );
     }

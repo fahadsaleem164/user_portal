@@ -10,6 +10,7 @@ class Logout extends Component {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("event_token");
+        localStorage.removeItem("state_full_lorem_ipsum");
 
         this.setState({
             logged_in: false

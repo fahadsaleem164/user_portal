@@ -12,24 +12,41 @@ class UserRegister extends Component {
 
             super(props)
 
-            this.state = {
-                msg: '' ,
-                errorStatus : '',
-                token: localStorage.getItem("token"),
-                event_token : localStorage.getItem("event_token"),
-                first_name : '',
-                last_name : '',
-                city : '',
-                mobile_no : '' ,
-                university : '' ,
-                campus : '',
-                country : '',
-                student_id : '',
-                degree : '',
-                year_of_study : '',
-                field_of_study : null,
-                linkedin_profile : null
-           }
+       
+            if(localStorage.getItem("state_full_lorem_ipsum") == null){
+              
+                  this.state = {
+      
+                      state_full_lorem_ipsum : false,
+                      
+                  
+                  } 
+            } else if(localStorage.getItem("state_full_lorem_ipsum") == 'true') {
+                 
+                  
+                      
+                      this.state = {
+                        msg: '' ,
+                        errorStatus : '',
+                        token: localStorage.getItem("token"),
+                        event_token : localStorage.getItem("event_token"),
+                        first_name : '',
+                        last_name : '',
+                        city : '',
+                        mobile_no : '' ,
+                        university : '' ,
+                        campus : '',
+                        country : '',
+                        student_id : '',
+                        degree : '',
+                        year_of_study : '',
+                        field_of_study : null,
+                        linkedin_profile : null,
+                        state_full_lorem_ipsum : true
+                   }
+            }
+
+            
 
         }
 
@@ -218,13 +235,19 @@ class UserRegister extends Component {
     render() {
 
         return (
-
-            <section>
-                {this.props.login_status == false?
-
-                     <Redirect to='/' />
-                     
+            <>
+            <>
+            {this.state.state_full_lorem_ipsum == false?
+                <>
+                        <Redirect to='/' />
+                </>
                 :null}
+                </>
+
+
+                {this.state.state_full_lorem_ipsum == true?
+            <section>
+              
             <div class="container" >
                 <div class="row">
                     <div class="col-12 col-lg-3"></div>
@@ -346,8 +369,9 @@ class UserRegister extends Component {
                 </div>
             </div>
 </section>
+:null}
 
-               
+      </>         
           
          
         );

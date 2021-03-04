@@ -16,8 +16,6 @@ class Login extends Component {
         super(props)
 
         this.state = {
-
-            logged_in : false,
             event_token : Params.get('event'),
             user_type : '',
             error_status : ''
@@ -42,10 +40,7 @@ class Login extends Component {
 
         fd.append( 'email', this.state.email)
         fd.append( 'password', this.state.password)
-
-        fd.append( 'email', 'igz.iwd.29@gmail.com')
-        fd.append( 'password', '12345678')
-        
+    
         fd.append('event_token' , this.state.event_token)
 
         for (var key of fd.entries()) {
@@ -64,7 +59,6 @@ class Login extends Component {
 
           .then(response => {
 
-            console.log(response.data.data.role)
 
                 if(response.data.status == 0){
                  
@@ -81,7 +75,8 @@ class Login extends Component {
                     localStorage.setItem("token" ,response.data.data.token)
                     localStorage.setItem("role" ,response.data.data.role)
                     localStorage.setItem("event_token" ,this.state.event_token)
-                   
+                    localStorage.setItem("state_full_lorem_ipsum", true)
+                    
                     this.setState({
 
                         error_status : 'success',
@@ -90,9 +85,10 @@ class Login extends Component {
 
                     })
 
-                    // console.log(this.state.user_type)
+                    
 
-                    this.props.changeName(true)
+                    // this.props.changeName(true)
+
                 } 
         
           }).catch(err =>
@@ -101,12 +97,12 @@ class Login extends Component {
       }
 
     render() {
-
+            console.log(this.state.error_status)
         return (
                     <section >
                        
                             <div class="container">
-                                <h1>{this.props.myname}</h1>
+                                {/* <h1>{this.props.myname}</h1> */}
                                 <div class="row">
                                     <div class="col-12 col-lg-3"></div>
                                     <div class="col-12 col-lg-6">
@@ -124,11 +120,8 @@ class Login extends Component {
                                         {/* Success message display */}
 
                                         {this.state.error_status == 'success'?
-                                                    <>
-
-                                                   
-                                                        {this.state.logged_in == true?
-                                                        
+                                                    <>                        
+                                                    <p>working</p>                                
                                                         <div>
                                                             
                                                                 {this.state.user_type == 'mentor'?
@@ -138,11 +131,12 @@ class Login extends Component {
 
                                                                 {this.state.user_type == 'student'?
                                                                   
-                                                                    <Redirect to="/user_profile" />    
+                                                                    <Redirect to="/user_profile" /> 
+
                                                                 : null}
                                                             
                                                         </div>
-                                                        : null}
+                                                      
                                                     </>
                                         : null}
                                         <form name="user form" method="POST" onSubmit={event => this.handleSubmit(event)}>

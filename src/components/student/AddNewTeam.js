@@ -5,9 +5,27 @@ import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router
 class AddNewTeam extends Component {
 
     constructor(props){
-        console.log(props.login_status)
-        super(props)
 
+        super(props)
+       
+      if(localStorage.getItem("state_full_lorem_ipsum") == null){
+        
+            this.state = {
+
+                state_full_lorem_ipsum : false
+            
+            } 
+      } else if(localStorage.getItem("state_full_lorem_ipsum") == 'true') {
+           
+            this.state = {
+                state_full_lorem_ipsum : true
+            }
+      }
+       
+    
+
+      
+    
 
     }
 
@@ -15,12 +33,27 @@ class AddNewTeam extends Component {
         return (
             <div>
                     {/* First of all check user login or not */}
-                    {this.props.login_status == false?
-
+                    {this.state.state_full_lorem_ipsum == false?
+                    <>
                             <Redirect to='/' />
+                    </>
+                    :null}
+                     {this.state.state_full_lorem_ipsum == true?
+                        <>
+                    <h1>Add New Team</h1>
+                    <h1>Add New Team</h1>
+                    <h1>Add New Team</h1>
+                    <h1>Add New Team</h1>
+                    <h1>Add New Team</h1>
+                    <h1>Add New Team</h1>
+                    <h1>Add New Team</h1>
+                    <h1>Add New Team</h1>
+</>
                     :null}
 
-                    <h1>Add New Team</h1>
+
+
+                    
             </div>
         );
     }

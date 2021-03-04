@@ -10,19 +10,24 @@ class Header extends Component {
         console.log(props)
        
         super(props)
-
         const token = localStorage.getItem("token")
         const role = localStorage.getItem("role")
-        let logged_in = true
 
-        if(token==null){
-            logged_in = false
-        }
+        if(localStorage.getItem("state_full_lorem_ipsum") == null){
+        
+            this.state = {
 
-        this.state ={
-            logged_in,
-            role
-        }  
+                state_full_lorem_ipsum : false,
+                role
+            } 
+      } else if(localStorage.getItem("state_full_lorem_ipsum") == 'true') {
+           
+            this.state = {
+                state_full_lorem_ipsum : 'true',
+                role 
+            }
+      }
+
 
     }
 
@@ -117,7 +122,7 @@ class Header extends Component {
 
                         {/* Login button will display  */}
 
-                           {this.props.login_status == false ?
+                           {this.state.state_full_lorem_ipsum == false ?
                              <li class="nav-item ml-3">
                                 
                              <Link href="#" to={'/login'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Login</Link>
@@ -127,11 +132,11 @@ class Header extends Component {
 
                             {/* if login as student then this will show */}
 
-                              {this.state.logged_in == true ?
+                              {this.state.state_full_lorem_ipsum == 'true' ?
                               <>
                                 {this.state.role == 'student' ?
-                                <>
-                              {this.props.login_status == true ?
+                               
+                             
                                         <li class="nav-item ml-3">
                                                 <li class="nav-item dropdown">
                                                                 <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
@@ -146,20 +151,20 @@ class Header extends Component {
                                                                 </ul>
                                                             </li>
                                         </li>
-                              :null}
-                              </>
+                            
+                             
                               :null}
 
                               </>
                               :null}         
 
                              {/* if login as mentor then this will show */}
-                             {this.state.logged_in == true ?
+                             {this.state.state_full_lorem_ipsum == 'true' ?
                               <>
                                 {this.state.role == 'mentor' ?
                                 <>
-                              {this.props.login_status == true ?
-                              <>
+                            
+                             
                               <li class="nav-item ml-3">
                                      <li class="nav-item dropdown">
                                                     <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
@@ -173,8 +178,7 @@ class Header extends Component {
                                                     </ul>
                                                 </li>
                               </li>
-                              </>
-                              :null}
+                            
                               </>
                               :null}
                               </>
