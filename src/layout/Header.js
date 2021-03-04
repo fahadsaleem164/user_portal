@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import {Redirect ,BrowserRouter as Router , Route ,Link } from 'react-router-dom'
-
+import Logout from '../components/Logout'
+import {connect } from 'react-redux'
 
 class Header extends Component {
     
     constructor(props){
+
+        console.log(props)
        
         super(props)
 
@@ -23,19 +26,7 @@ class Header extends Component {
 
     }
 
-    logout = (event) => {
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("event_token");
-
-        this.setState({
-            logged_in: false
-
-        })
-        
-
-    }
 
 
     
@@ -122,11 +113,11 @@ class Header extends Component {
                             </ul>
                         </li>
                         
-                        <li class="nav-item ml-3">
-                             {/* <Link href="#" to={'/user_register'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Register</Link> */}
-                           </li>
+                        
 
-                           {this.state.logged_in == false ?
+                        {/* Login button will display  */}
+
+                           {this.props.login_status == false ?
                              <li class="nav-item ml-3">
                                 
                              <Link href="#" to={'/login'} style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">Login</Link>
@@ -135,26 +126,30 @@ class Header extends Component {
                             :null}
 
                             {/* if login as student then this will show */}
+
                               {this.state.logged_in == true ?
                               <>
                                 {this.state.role == 'student' ?
-                              
-                              <li class="nav-item ml-3">
-                             
-                                     <li class="nav-item dropdown">
-                                                    <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
-                                                    <ul class="dropdown-menu">
-                                                        <li class="nav-item dropdown">
-                                                            <Link class="nav-link" to={'/user_profile'}>Edit Profile</Link> 
-                                                            <Link class="nav-link" to={'/add_new_team'}>New Team</Link>
-                                                            <Link class="nav-link" to={'/register_idea'}>Register an Idea</Link>
-                                                            <hr></hr>
-                                                            <Link class="nav-link" to={''}  onClick={this.logout}>Logout</Link>   
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                              </li>
+                                <>
+                              {this.props.login_status == true ?
+                                        <li class="nav-item ml-3">
+                                                <li class="nav-item dropdown">
+                                                                <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
+                                                                <ul class="dropdown-menu">
+                                                                    <li class="nav-item dropdown">
+                                                                        <Link class="nav-link" to={'/user_profile'}>Edit Profile</Link> 
+                                                                        <Link class="nav-link" to={'/add_new_team'}>New Team</Link>
+                                                                        <Link class="nav-link" to={'/register_idea'}>Register an Idea</Link>
+                                                                        <hr></hr>
+                                                                        <Logout />
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                        </li>
                               :null}
+                              </>
+                              :null}
+
                               </>
                               :null}         
 
@@ -162,7 +157,9 @@ class Header extends Component {
                              {this.state.logged_in == true ?
                               <>
                                 {this.state.role == 'mentor' ?
-                              
+                                <>
+                              {this.props.login_status == true ?
+                              <>
                               <li class="nav-item ml-3">
                                      <li class="nav-item dropdown">
                                                     <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
@@ -171,11 +168,14 @@ class Header extends Component {
                                                             <Link class="nav-link" to={'/user_profile'}>Assigned to a team/idea</Link> 
                                                             <Link class="nav-link" to={'/add_new_team'}>Evaluate Teams</Link>
                                                             <hr></hr>
-                                                            <Link class="nav-link" to={''}  onClick={this.logout}>Logout</Link>   
+                                                            <Logout />
                                                         </li>
                                                     </ul>
                                                 </li>
                               </li>
+                              </>
+                              :null}
+                              </>
                               :null}
                               </>
                               :null}         
@@ -203,4 +203,16 @@ class Header extends Component {
     }
 }
 
-export default Header
+
+const  mapStateToProps = (state) => {
+    
+    return (
+        {
+            login_status : state.login_status
+        }
+    )
+  }
+
+
+
+export default connect(mapStateToProps)(Header)

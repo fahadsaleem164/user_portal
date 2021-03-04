@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import axios from "axios"
 import * as qs from "query-string"
 import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router-dom"
+import {connect } from 'react-redux'
 
 class Login extends Component {
 
 
     constructor(props){
 
+         console.log(props.login_status)
+
         let Params = new URLSearchParams(props.location.search)
+
         super(props)
 
         this.state = {
@@ -17,11 +21,9 @@ class Login extends Component {
             event_token : Params.get('event'),
             user_type : '',
             error_status : ''
-           
-            
+                      
        }
     }
-
 
 
     handleChange = (event) => {        
@@ -40,6 +42,10 @@ class Login extends Component {
 
         fd.append( 'email', this.state.email)
         fd.append( 'password', this.state.password)
+
+        fd.append( 'email', 'igz.iwd.29@gmail.com')
+        fd.append( 'password', '12345678')
+        
         fd.append('event_token' , this.state.event_token)
 
         for (var key of fd.entries()) {
@@ -58,23 +64,35 @@ class Login extends Component {
 
           .then(response => {
 
+            console.log(response.data.data.role)
+
                 if(response.data.status == 0){
                  
                     this.setState({
+
                         error_status : 'error',
                         msg:response.data.message,
+
                     })
 
                 } else if(response.data.status == 1) {
+                  
                     
                     localStorage.setItem("token" ,response.data.data.token)
-                    localStorage.setItem("role" ,response.data.data.roles)
+                    localStorage.setItem("role" ,response.data.data.role)
                     localStorage.setItem("event_token" ,this.state.event_token)
+                   
                     this.setState({
+
                         error_status : 'success',
                         logged_in : true , 
-                        user_type :response.data.data.roles 
+                        user_type :response.data.data.role
+
                     })
+
+                    // console.log(this.state.user_type)
+
+                    this.props.changeName(true)
                 } 
         
           }).catch(err =>
@@ -86,7 +104,9 @@ class Login extends Component {
 
         return (
                     <section >
+                       
                             <div class="container">
+                                <h1>{this.props.myname}</h1>
                                 <div class="row">
                                     <div class="col-12 col-lg-3"></div>
                                     <div class="col-12 col-lg-6">
@@ -105,13 +125,19 @@ class Login extends Component {
 
                                         {this.state.error_status == 'success'?
                                                     <>
+
+                                                   
                                                         {this.state.logged_in == true?
+                                                        
                                                         <div>
+                                                            
                                                                 {this.state.user_type == 'mentor'?
-                                                                    <Redirect to="/mentor_profile" />    
+                                                                 
+                                                                     <Redirect to="/mentor_profile" />    
                                                                 : null}
 
                                                                 {this.state.user_type == 'student'?
+                                                                  
                                                                     <Redirect to="/user_profile" />    
                                                                 : null}
                                                             
@@ -136,6 +162,8 @@ class Login extends Component {
                                                     <input type="submit" class="btn primary-button" value="Login" style={{marginLeft:"35%" ,  width:'198px'}}/>
                                                 </div>
 
+                                                
+
 
                                             </div>
                                         </form>
@@ -150,4 +178,26 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const  mapStateToProps = (state) => {
+    
+    return (
+        {
+            login_status : state.login_status
+        }
+    )
+}
+
+const dispatchToProps = (dispatach) => {
+
+    return (
+      {
+        changeName: (login_status) => {dispatach({type : 'CHANGE_NAME', payload : login_status})}
+      }
+    )
+  }
+
+
+
+
+export default connect(mapStateToProps , dispatchToProps)(Login);
+// export default Login;

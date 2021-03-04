@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios"
 import * as qs from "query-string"
 import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router-dom"
-
+import {connect } from 'react-redux'
 
 class UserRegister extends Component {
 
@@ -25,7 +25,7 @@ class UserRegister extends Component {
                 campus : '',
                 country : '',
                 student_id : '',
-                class_read : '',
+                degree : '',
                 year_of_study : '',
                 field_of_study : null,
                 linkedin_profile : null
@@ -74,10 +74,10 @@ class UserRegister extends Component {
 
             }
 
-            if(response.data.data.class){
+            if(response.data.data.degree){
 
                 this.setState ({
-                    class_read : response.data.data.class
+                    degree : response.data.data.degree
                 })
 
             }
@@ -161,7 +161,7 @@ class UserRegister extends Component {
         fd.append('campus', this.state.campus);
         fd.append('country', this.state.country);
         fd.append('student_id', this.state.student_id);
-        fd.append('class', this.state.class_read);
+        fd.append('degree', this.state.degree);
         fd.append('year_of_study', this.state.year_of_study);
         fd.append('field_of_study', this.state.field_of_study);
         fd.append('linkedin_profile', this.state.linkedin_profile);
@@ -220,6 +220,11 @@ class UserRegister extends Component {
         return (
 
             <section>
+                {this.props.login_status == false?
+
+                     <Redirect to='/' />
+                     
+                :null}
             <div class="container" >
                 <div class="row">
                     <div class="col-12 col-lg-3"></div>
@@ -307,7 +312,7 @@ class UserRegister extends Component {
                                     <label for="class">
                                         Class/Year of Study
                                         </label>
-                                        <input type="text" name="class_read"  value={this.state.class_read} class="form-control field-name" onChange={this.handleChange}/>
+                                        <input type="text" name="degree"  value={this.state.degree} class="form-control field-name" onChange={this.handleChange}/>
                                    
                                 </div>
 
@@ -349,4 +354,13 @@ class UserRegister extends Component {
     }
 }
 
-export default UserRegister
+const  mapStateToProps = (state) => {
+    
+    return (
+        {
+            login_status : state.login_status
+        }
+    )
+  }
+
+export default  connect(mapStateToProps)(UserRegister);
