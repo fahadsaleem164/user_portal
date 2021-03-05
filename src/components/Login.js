@@ -40,7 +40,6 @@ class Login extends Component {
 
         fd.append( 'email', this.state.email)
         fd.append( 'password', this.state.password)
-    
         fd.append('event_token' , this.state.event_token)
 
         for (var key of fd.entries()) {
