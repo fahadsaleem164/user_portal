@@ -12,6 +12,8 @@ import MentorRegister from './components/MentorRegistration'
 import UserProfile from './components/UserProfile'
 import AddNewTeam from './components/student/AddNewTeam'
 import RegisterIdea from './components/student/RegisterIdea'
+import MultiFormRegistraion from './components/student/MultiFormRegistraion'
+import AddNewIdea from './components/student/AddNewIdea'
 import Login from './components/Login'
 import test from './test'
 import {connect } from 'react-redux'
@@ -41,6 +43,8 @@ function Routes(props) {
         <AppRoute exact path='/mentor_register' layout={UserLayout} component={MentorRegister} />
         <AppRoute exact path='/verify_code' layout={UserLayout} component={UserVerify} />
         <AppRoute exact path='/login' layout={UserLayout} component={Login} />
+        <AppRoute exact path='/multiform' layout={UserLayout} component={MultiFormRegistraion} />
+        <AppRoute exact path='/add_new_idea' layout={UserLayout} component={AddNewIdea} />
 
         {/* Private Routes */}
     

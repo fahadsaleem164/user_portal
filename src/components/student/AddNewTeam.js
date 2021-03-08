@@ -3,7 +3,7 @@ import {connect } from 'react-redux'
 import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router-dom"
 import axios from "axios"
 import * as qs from "query-string"
-
+import StepWizard from 'react-step-wizard';
 class AddNewTeam extends Component {
 
     constructor(props){
@@ -25,6 +25,7 @@ class AddNewTeam extends Component {
                 state_full_lorem_ipsum : true,
                 token: localStorage.getItem("token"),
                 event_token : localStorage.getItem("event_token"),
+                preview_image : '',
                 error_status : ''
             
 
@@ -45,6 +46,8 @@ class AddNewTeam extends Component {
     //   This function handles image upload
 
       onImageChange = event => {
+
+        
 
         if (event.target.files && event.target.files[0]) {
 
@@ -115,6 +118,10 @@ class AddNewTeam extends Component {
 
                      {this.state.state_full_lorem_ipsum == true?
                         <>
+
+                        <StepWizard>
+                  
+ 
                                 <section>
                                         <div class="container" >
                                             <div class="row">
@@ -161,7 +168,7 @@ class AddNewTeam extends Component {
                                                                     Logo
                                                                     </label>
                                                                     <input type="file" name="logo"  class="form-control field-name" onChange={this.onImageChange}/>
-                                                                
+                                                                    <img src={this.state.preview_image} alt='' />
                                                             </div>
 
                                                             <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
@@ -183,6 +190,9 @@ class AddNewTeam extends Component {
                                         
                                         </div>
                                 </section>
+                                
+                                
+                                </StepWizard>
                         </>
                     :null}
 
