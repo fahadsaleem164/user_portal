@@ -144,7 +144,7 @@ class Header extends Component {
                                                                     <li class="nav-item dropdown">
                                                                         <Link class="nav-link" to={'/user_profile'}>Edit Profile</Link> 
                                                                         <Link class="nav-link" to={'/add_new_team'}>New Team</Link>
-                                                                        <Link class="nav-link" to={'/register_idea'}>Register an Idea</Link>
+                                                                        <Link class="nav-link" to={'/add_new_idea'}>Register an Idea</Link>
                                                                         <hr></hr>
                                                                         <Logout />
                                                                     </li>
@@ -182,7 +182,32 @@ class Header extends Component {
                               </>
                               :null}
                               </>
-                              :null}         
+                              :null}   
+
+
+                              {this.state.state_full_lorem_ipsum == 'true' ?
+                              <>
+                                {this.state.role == 'navy_person' ?
+                                <>
+                            
+                             
+                              <li class="nav-item ml-3">
+                                     <li class="nav-item dropdown">
+                                                    <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li class="nav-item dropdown">
+                                                            <Link class="nav-link" to={'/user_profile'}>Navy Person</Link> 
+                                                            <hr></hr>
+                                                            <Logout />
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                              </li>
+                            
+                              </>
+                              :null}
+                              </>
+                              :null}               
 
 
 

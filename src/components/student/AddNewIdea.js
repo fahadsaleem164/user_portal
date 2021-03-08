@@ -32,6 +32,7 @@ const MultiFormRegistraion = () => {
 
 
     switch(step.id){
+        
         case "username":
             return <UserNameTeamLead {...props}/>;
         case "ideathonentry":

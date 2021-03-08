@@ -4,6 +4,9 @@ import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router
 import axios from "axios"
 import * as qs from "query-string"
 import StepWizard from 'react-step-wizard';
+import FlashMessage from 'react-flash-message'
+
+
 class AddNewTeam extends Component {
 
     constructor(props){
@@ -54,7 +57,8 @@ class AddNewTeam extends Component {
           let img = event.target.files[0];
 
           this.setState({
-            logo: event.target.files[0]
+            logo: event.target.files[0],
+            preview_image: URL.createObjectURL(event.target.files[0])
           });
 
         }
@@ -135,17 +139,20 @@ class AddNewTeam extends Component {
                                                             {/* Display validation error */}
                                                                 {this.state.error_status == 'error'?
                                                                     <div class="col-12 m-0 p-2 input-group">
-                                                                        <p style={{color:'red'}}>{this.state.msg}</p>
-                                                                        </div>
-                                                                    :null}
+                                                                        <FlashMessage duration={5000}>
+                                                                          <strong style={{color:'red'}}>{this.state.msg}</strong>
+                                                                        </FlashMessage>
+                                                                         </div>
+                                                                :null}
+
                                         ​                    {/* Display Sucess message */}
                                                                 {this.state.error_status == 'success'?
                                                                     <div class="col-12 m-0 p-2 input-group">
-                                                                        <p style={{color:'green'}}>
-                                                                            {this.state.msg}
-                                                                        </p>
-                                                                        </div>
-                                                                    :null}
+                                                                        <FlashMessage duration={5000}>
+                                                                          <strong style={{color:'red'}}>{this.state.msg}</strong>
+                                                                        </FlashMessage>
+                                                                     </div>
+                                                                :null}
 
                                                             <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                                                 <label for="name">
@@ -168,8 +175,14 @@ class AddNewTeam extends Component {
                                                                     Logo
                                                                     </label>
                                                                     <input type="file" name="logo"  class="form-control field-name" onChange={this.onImageChange}/>
-                                                                    <img src={this.state.preview_image} alt='' />
+                                                                    
                                                             </div>
+
+                                                            <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+                                                                
+                                                                   <img src={this.state.preview_image} alt='' />
+                                                            </div>
+
 
                                                             <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
                                                              <label for="description">

@@ -4,10 +4,10 @@ import * as qs from "query-string"
 import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router-dom"
 import {connect } from 'react-redux'
 import FlashMessage from 'react-flash-message'
-import Loader from "react-loader-spinner";
 
 
-class UserRegister extends Component {
+
+class NavelProfile extends Component {
 
         constructor(props){
 
@@ -45,9 +45,7 @@ class UserRegister extends Component {
                         year_of_study : '',
                         field_of_study : null,
                         linkedin_profile : null,
-                        state_full_lorem_ipsum : true,
-                        visibility : true,
-                        load_class : 'loaderscreen'
+                        state_full_lorem_ipsum : true
                    }
             }
 
@@ -78,14 +76,12 @@ class UserRegister extends Component {
         
           .then(response => {
 
-         
+            console.log(response)
 
             if(response.data.data.campus){
 
                 this.setState ({
-                    campus : response.data.data.campus ,
-                     
-                   
+                    campus : response.data.data.campus
                 })
 
             }
@@ -155,10 +151,7 @@ class UserRegister extends Component {
                last_name : response.data.data.last_name ,
                city : response.data.data.city,
                mobile_no :response.data.data.mobile_no,
-               event_token : this.state.event_token,
-               load_class : 'loaderscreen_loaded', 
-               visibility : false ,  //when response come visibility of loader icon become false
-               
+               event_token : this.state.event_token
   
               })
 
@@ -176,11 +169,6 @@ class UserRegister extends Component {
 
         event.preventDefault()
 
-        this.setState({
-            visibility : true,
-            load_class : 'loaderscreen'
-        })
-       
         const formData = {}
 
         var fd = new FormData();
@@ -220,7 +208,7 @@ class UserRegister extends Component {
       
         axios(axiosOptions)
           .then(response => {
-        //    console.log(response)
+           console.log(response)
                 if(response.data.status == 0){
                    
                     this.setState({
@@ -234,8 +222,6 @@ class UserRegister extends Component {
                     this.setState({
                         errorStatus : 'success', 
                         msg:response.data.message,
-                        load_class : 'loaderscreen_loaded', 
-                        visibility : false ,  //when response come visibility of loader icon become false
                         
                       })
                 } 
@@ -263,28 +249,13 @@ class UserRegister extends Component {
 
 
                 {this.state.state_full_lorem_ipsum == true?
-
             <section>
-
-            <div className={this.state.load_class}>
-           
-            <Loader
-                    type="Bars"
-                    color="black"
-                    height={100}
-                    width={100}
-                    visible={this.state.visibility}
-               
-                />
-
-            </div>
-
               
             <div class="container" >
                 <div class="row">
                     <div class="col-12 col-lg-3"></div>
                     <div class="col-12 col-lg-6">
-                        <h1 style={{textAlign:'center'}}>User Profile</h1>
+                        <h1 style={{textAlign:'center'}}>Navy Person Profile</h1>
                         <form name="" method="POST" onSubmit={event => this.handleSubmit(event)}>
                        
                        {/* Display error message */}
@@ -422,4 +393,4 @@ const  mapStateToProps = (state) => {
     )
   }
 
-export default  connect(mapStateToProps)(UserRegister);
+export default  NavelProfile;

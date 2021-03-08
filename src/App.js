@@ -21,9 +21,6 @@ import {connect } from 'react-redux'
 
 function App(props) {
 
-
-  
-
   return (
      <>
 

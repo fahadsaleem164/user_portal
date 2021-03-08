@@ -96,7 +96,7 @@ class Login extends Component {
       }
 
     render() {
-            console.log(this.state.error_status)
+           
         return (
                     <section >
                        
@@ -120,9 +120,8 @@ class Login extends Component {
 
                                         {this.state.error_status == 'success'?
                                                     <>                        
-                                                    <p>working</p>                                
+                                                                               
                                                         <div>
-                                                            
                                                                 {this.state.user_type == 'mentor'?
                                                                  
                                                                      <Redirect to="/mentor_profile" />    
@@ -133,6 +132,11 @@ class Login extends Component {
                                                                     <Redirect to="/user_profile" /> 
 
                                                                 : null}
+                                                                {this.state.user_type == 'navy_person'?
+                                                                  
+                                                                  <Redirect to="/navel_profile" /> 
+
+                                                              : null}
                                                             
                                                         </div>
                                                       
