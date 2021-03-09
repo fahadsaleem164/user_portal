@@ -207,7 +207,7 @@ class UserRegister extends Component {
                       })
 
                 } 
-                else if(response.status == 201) {
+                else if(response.data.status == 1) {
                    
                     this.setState({
 
@@ -249,12 +249,22 @@ class UserRegister extends Component {
                                             {this.state.error_status == 'success'?
 
                                                 <div class="col-12 m-0 p-2 input-group">
-                                                        <FlashMessage duration={3000}>
-                                                            <p style={{color:'green'}}>{this.state.msg}</p>
-                                                        </FlashMessage>
+
+
+                                                          <> 
+
+                                                          { ReactTooltip.show(this.success_msg_ref) }
+                                                           
+                                                            </>
+                                                        
                                                 </div>
 
                                             :null}
+
+                                            <ReactTooltip id='success_message'  getContent={() => { return this.state.msg }}/>
+                                            <br></br>
+                                            <div data-type="success"  data-effect="solid"  data-event-off="click"  data-for='success_message'  ref={ref => this.success_msg_ref = ref} data-tip=""></div>
+                                            
 
                                             <div class="row form-group-margin">
                                             
