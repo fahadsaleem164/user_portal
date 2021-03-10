@@ -41,6 +41,14 @@ class UserRegister extends Component {
                 mobile_no_validation : 'valid',
                 load_class : 'loaderscreen_loaded',  //already load screen diplay none 
                 visibility : false, //when screem already loaded no loading image show
+                data_tip_disable_first_name : false	,
+                data_tip_disable_last_name : false ,
+                data_tip_disable_email : false ,
+                data_tip_disable_password : false ,
+                data_tip_disable_confirm_password : false ,
+                data_tip_disable_city : false ,
+                data_tip_disable_mobile_no : false ,  
+
 
            }
 
@@ -49,8 +57,139 @@ class UserRegister extends Component {
         }
 
 
-    handleChange = (event) => {       
+    handleChange = (event) => {   
+
+        console.log(event.target.name)
         
+
+        if(event.target.name == "first_name"  && event.target.value == ""){
+
+            this.setState({
+
+                first_name_validation : 'in_valid'
+            
+            })
+
+        } else if(event.target.name == "first_name"  && event.target.value != "") {
+                console.log("first name")
+
+            this.setState({
+                first_name_validation : 'valid_input',
+                data_tip_disable_first_name : true
+
+            })
+
+        }
+
+
+        if(event.target.name == "last_name"  && event.target.value == ""){
+                     
+            this.setState({
+
+                last_name_validation : 'in_valid'
+            
+            })
+            
+        } else if(event.target.name == "last_name"  && event.target.value != ""){
+
+       
+            this.setState({
+                last_name_validation : 'valid_input',
+                data_tip_disable_last_name : true
+
+            })
+        }
+
+        if(event.target.name == "email"  && event.target.value == ""){
+                     
+            this.setState({
+
+                email_validation : 'in_valid'
+            
+            })
+            
+        } else if(event.target.name == "email"  && event.target.value != "") {
+       
+            this.setState({
+                email_validation : 'valid_input',
+                data_tip_disable_email: true
+
+            })
+        }
+
+        if(event.target.name == "password"  && event.target.value == "password"){
+                     
+            this.setState({
+
+                password_validation : 'in_valid'
+            
+            })
+            
+        } else if((event.target.name == "password"  && event.target.value != "password")){
+       
+            this.setState({
+                password_validation : 'valid_input',
+                data_tip_disable_password: true
+
+            })
+        }
+
+     
+        if(event.target.name == "confirm_password"  && event.target.value == ""){
+                     
+            this.setState({
+
+                confirm_password_validation : 'in_valid'
+            
+            })
+            
+        } else if((event.target.name == "confirm_password"  && event.target.value != "")) {
+       
+            this.setState({
+                confirm_password_validation : 'valid_input',
+                data_tip_disable_confirm_password: true
+
+            })
+        }
+        
+        if(event.target.name == "city"  && event.target.value == ""){
+                     
+            this.setState({
+
+                city_validation : 'in_valid'
+            
+            })
+            
+        } else if(event.target.name == "city"  && event.target.value != "") {
+       
+            this.setState({
+
+                city_validation : 'valid_input',
+                data_tip_disable_city: true
+
+            })
+        }
+
+        if(event.target.name == "mobile_no"  && event.target.value == ""){
+                     
+            this.setState({
+
+                mobile_no_validation : 'in_valid'
+            
+            })
+            
+        } else if(event.target.name == "mobile_no"  && event.target.value != "") {
+       
+            this.setState({
+
+                mobile_no_validation : 'valid_input',
+                data_tip_disable_mobile_no: true
+
+            })
+        }
+        
+        
+
         this.setState({[event.target.name] : event.target.value});
 
       }
@@ -112,7 +251,8 @@ class UserRegister extends Component {
                     if(response.data.errors.email != undefined){
                       
                         this.setState({
-                            email_validation : 'in_valid'
+                            email_validation : 'in_valid',
+                            data_tip_disable_email : false
                         })
                     } else {
                        
@@ -124,7 +264,8 @@ class UserRegister extends Component {
                     if(response.data.errors.password != undefined){
                        
                         this.setState({
-                            password_validation : 'in_valid'
+                            password_validation : 'in_valid',
+                            data_tip_disable_password : false
                         })
                     } else {
                        
@@ -136,7 +277,8 @@ class UserRegister extends Component {
                     if(response.data.errors.confirm_password != undefined){
                         
                         this.setState({
-                            confirm_password_validation : 'in_valid'
+                            confirm_password_validation : 'in_valid',
+                            data_tip_disable_confirm_password : false
                         })
                     } else {
                        
@@ -148,7 +290,8 @@ class UserRegister extends Component {
                     if(response.data.errors.first_name != undefined){
                        
                         this.setState({
-                            first_name_validation : 'in_valid'
+                            first_name_validation : 'in_valid',
+                            data_tip_disable_first_name : false
                         })
                     } else {
                        
@@ -160,7 +303,8 @@ class UserRegister extends Component {
                     if(response.data.errors.last_name != undefined){
                         
                         this.setState({
-                            last_name_validation : 'in_valid'
+                            last_name_validation : 'in_valid',
+                            data_tip_disable_last_name : false
                         })
                     } else {
                        
@@ -176,7 +320,8 @@ class UserRegister extends Component {
 
                         this.setState({
 
-                            city_validation : 'in_valid'
+                            city_validation : 'in_valid',
+                            data_tip_disable_city : false
 
                         })
                     } else {
@@ -191,7 +336,8 @@ class UserRegister extends Component {
 
                         this.setState({
 
-                            mobile_no_validation : 'in_valid'
+                            mobile_no_validation : 'in_valid',
+                            data_tip_disable_mobile_no : false
 
                         })
                     } else {
@@ -312,7 +458,7 @@ class UserRegister extends Component {
                                                         
                                                         <ReactTooltip id='name'  getContent={() => { return this.state.error_messages.first_name }}/>
 
-                                                    <input type="text" name="first_name" data-type="error"  data-effect="solid"  data-event-off="click" data-for='name'  ref={ref => this.first_name_ref = ref} data-tip="" className={this.state.first_name_validation} value={this.state.first_name}  onChange={this.handleChange}/>
+                                                    <input type="text" data-tip-disable={this.state.data_tip_disable_first_name} data-background-color="red" name="first_name" data-effect="solid"  data-event-off="click" data-for='name'  ref={ref => this.first_name_ref = ref} data-tip="" className={this.state.first_name_validation} value={this.state.first_name}  onChange={this.handleChange}/>
                                                
                                                 </div>
 
@@ -336,7 +482,7 @@ class UserRegister extends Component {
 
                                                         <ReactTooltip id='last_name_r'  getContent={() => { return this.state.error_messages.last_name }}/>
                                                     
-                                                    <input type="text" name="last_name" value={this.state.last_name}  data-for='last_name_r' className={this.state.last_name_validation} ref={ref => this.last_name_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click"  onChange={this.handleChange}/>
+                                                    <input type="text" name="last_name" data-tip-disable={this.state.data_tip_disable_last_name} value={this.state.last_name}  data-for='last_name_r' className={this.state.last_name_validation} ref={ref => this.last_name_ref = ref} data-tip="" data-background-color="red"  data-effect="solid"  data-event-off="click"  onChange={this.handleChange}/>
                                             </div>
                                                         
                                             {/* Last name input field handling  end here */}
@@ -348,14 +494,6 @@ class UserRegister extends Component {
 
                                                    <label>Email</label>
 
-                                                   {/* {this.state.error_messages.email != undefined ?
-                                                    
-                                                        <label style={{color:'red'}}>
-                                                            * {this.state.error_messages.email}
-                                                            
-                                                        </label>
-                                                
-                                                    :null }*/}
 
                                                         {this.state.error_messages.email != undefined ?
                                                             <> 
@@ -369,7 +507,7 @@ class UserRegister extends Component {
 
                                                         <ReactTooltip id='email'  getContent={() => { return this.state.error_messages.email }}/>
 
-                                                    <input type="text" name="email" value={this.state.email}   className={this.state.email_validation} data-for='email' ref={ref => this.email_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" onChange={this.handleChange}/>
+                                                    <input type="text" name="email" data-tip-disable={this.state.data_tip_disable_email} value={this.state.email}   className={this.state.email_validation} data-for='email' ref={ref => this.email_ref = ref} data-tip="" data-background-color="red"  data-effect="solid"  data-event-off="click" onChange={this.handleChange}/>
                                                 
                                             </div>
 
@@ -395,7 +533,7 @@ class UserRegister extends Component {
 
                                                         <ReactTooltip id='password'  getContent={() => { return this.state.error_messages.password }}/>
                                                 
-                                                    <input type="password" name="password" value={this.state.password} data-for='password' ref={ref => this.password_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" className={this.state.password_validation} onChange={this.handleChange}/>
+                                                    <input type="password" name="password" data-tip-disable={this.state.data_tip_disable_password} value={this.state.password} data-for='password' ref={ref => this.password_ref = ref} data-tip="" data-background-color="red"  data-effect="solid"  data-event-off="click" className={this.state.password_validation} onChange={this.handleChange}/>
                                                 
                                             </div>
 
@@ -416,7 +554,7 @@ class UserRegister extends Component {
                                             
                                                 :null } 
                                                    
-                                                    <input type="password" name="confirm_password" value={this.state.confirm_password} className={this.state.confirm_password_validation} onChange={this.handleChange}/>
+                                                    <input type="password" name="confirm_password" data-tip-disable={this.state.data_tip_disable_confirm_password} value={this.state.confirm_password} className={this.state.confirm_password_validation} onChange={this.handleChange}/>
                                                
                                                 </div>
 
@@ -440,7 +578,7 @@ class UserRegister extends Component {
 
                                                     <ReactTooltip id='city'  getContent={() => { return this.state.error_messages.city }}/>
                                                    
-                                                    <input type="text" name="city" data-for='city' value={this.state.city} className={this.state.city_validation} ref={ref => this.city_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click"   onChange={this.handleChange}/>
+                                                    <input type="text" name="city" data-tip-disable={this.state.data_tip_disable_city} data-for='city' value={this.state.city} className={this.state.city_validation} ref={ref => this.city_ref = ref} data-tip="" data-background-color="red"  data-effect="solid"  data-event-off="click"   onChange={this.handleChange}/>
                                                 
                                                 </div>
 
@@ -465,7 +603,7 @@ class UserRegister extends Component {
                                                     <ReactTooltip id='mobile_no'  getContent={() => { return this.state.error_messages.mobile_no }}/>
                                                     
 
-                                                    <input type="text" name="mobile_no" data-for='mobile_no' value={this.state.mobile_no} data-for='mobile_no'  ref={ref => this.mobile_no_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" className={this.state.mobile_no_validation} onChange={this.handleChange}/>
+                                                    <input type="text" name="mobile_no" data-for='mobile_no' data-tip-disable={this.state.data_tip_disable_mobile_no} value={this.state.mobile_no} data-for='mobile_no'  ref={ref => this.mobile_no_ref = ref} data-tip="" data-background-color="red"  data-effect="solid"  data-event-off="click" className={this.state.mobile_no_validation} onChange={this.handleChange}/>
                                                 
                                                 </div>
 

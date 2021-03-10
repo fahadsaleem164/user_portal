@@ -5,7 +5,7 @@ import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router
 import {connect } from 'react-redux'
 import FlashMessage from 'react-flash-message'
 import Loader from "react-loader-spinner";
-
+import ScreenLoader from "../layout/ScreenLoader"
 
 class UserRegister extends Component {
 

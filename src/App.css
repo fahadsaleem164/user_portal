@@ -20,7 +20,10 @@
     border-color: '';
 }
  .in_valid {
-     border-color: red;
+     border: red 1px solid;
+ }
+ .valid_input {
+    border: green 1px solid;
  }
 
  #flash_message_heading {
@@ -31,4 +34,3 @@
     padding: 10px;
 
  }
-    
