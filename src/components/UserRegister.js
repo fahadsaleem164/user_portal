@@ -3,8 +3,8 @@ import axios from "axios"
 import * as qs from "query-string"
 import FlashMessage from 'react-flash-message'
 import ReactTooltip from 'react-tooltip';
-import Loader from "react-loader-spinner";
-
+import ScreenLoader from "../layout/ScreenLoader"
+import ModalEvent from "../layout/Modal"
 
 class UserRegister extends Component {
 
@@ -16,6 +16,8 @@ class UserRegister extends Component {
             super(props)
 
             this.state = {
+                open : false,
+                setOpen : false,
                 msg: '' ,
                 error_status : '',
                 redirect: false,
@@ -31,7 +33,6 @@ class UserRegister extends Component {
                 confirm_password : '',
                 city : '',
                 mobile_no : '',
-                on_error_field : 'field_border_bydefault',
                 email_validation : 'valid',  //apply css class
                 first_name_validation : 'valid',
                 last_name_validation : 'valid',
@@ -48,14 +49,15 @@ class UserRegister extends Component {
                 data_tip_disable_confirm_password : false ,
                 data_tip_disable_city : false ,
                 data_tip_disable_mobile_no : false ,  
-
+                modal_trigger : false,
+                isActive:false
 
            }
 
-        
 
         }
 
+    
 
     handleChange = (event) => {   
 
@@ -194,11 +196,22 @@ class UserRegister extends Component {
 
       }
 
+      clickSubmit(){
+
+
+        this.setState({
+
+            modal_trigger : true
+
+        })
+    }
+
     handleSubmit(event) {
 
             this.setState({
-                load_class : 'loaderscreen',
-                visibility : true,
+                // load_class : 'loaderscreen',
+                // visibility : true,
+                modal_trigger:true,
             })
        
 
@@ -238,11 +251,15 @@ class UserRegister extends Component {
 
           .then(response => {
 
+            
+
+
             console.log(response)
 
                     this.setState({
                         load_class : 'loaderscreen_loaded',
                         visibility : false,
+                       
                     })
 
                 if(response.data.status == 0){
@@ -370,8 +387,8 @@ class UserRegister extends Component {
                         password : '',
                         confirm_password : '',
                         city : '',
-                        mobile_no : ''
-
+                        mobile_no : '',
+                        
                        
                         
 
@@ -387,24 +404,17 @@ class UserRegister extends Component {
           )
     }
 
+  
+
     render() {
 
 
         return (
                 <section>  
 
-            <div className={this.state.load_class}>
-           
-           <Loader
-                   type="Bars"
-                   color="black"
-                   height={100}
-                   width={100}
-                   visible={this.state.visibility}
-              
-               />
+                        <ScreenLoader  load_class={this.state.load_class} visiblity={this.state.visibility} />
+                        {/* Loading images end here */}
 
-           </div>
                         <div class="container">
                                 <div class="row">
                 
