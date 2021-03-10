@@ -178,7 +178,9 @@ class UserRegister extends Component {
 
         this.setState({
             visibility : true,
-            load_class : 'loaderscreen'
+            load_class : 'loaderscreen',
+            errorStatus : ''
+
         })
        
         const formData = {}
@@ -220,7 +222,18 @@ class UserRegister extends Component {
       
         axios(axiosOptions)
           .then(response => {
-        //    console.log(response)
+        
+
+                // AFTER get response loading image become invisiable
+                    this.setState({
+
+                        load_class : 'loaderscreen_loaded', 
+                        visibility : false ,  //when response come visibility of loader icon become false
+
+                    })
+                   
+
+
                 if(response.data.status == 0){
                    
                     this.setState({
@@ -234,8 +247,6 @@ class UserRegister extends Component {
                     this.setState({
                         errorStatus : 'success', 
                         msg:response.data.message,
-                        load_class : 'loaderscreen_loaded', 
-                        visibility : false ,  //when response come visibility of loader icon become false
                         
                       })
                 } 
@@ -247,7 +258,7 @@ class UserRegister extends Component {
       }
 
       Work(){
-          console.log("working")
+          
       }
 
 
@@ -304,7 +315,7 @@ class UserRegister extends Component {
                         {this.state.errorStatus == 'success'?
                                <div class="col-12 m-0 p-2 input-group">
                                     <FlashMessage duration={5000}>
-                                    <strong style={{color:'green'}}>{this.state.msg}</strong>
+                                      <h4 id="flash_message_heading">{this.state.msg}</h4>
                                     </FlashMessage>
                                </div>
                         :null}

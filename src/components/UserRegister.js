@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import * as qs from "query-string"
-import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router-dom"
 import FlashMessage from 'react-flash-message'
 import ReactTooltip from 'react-tooltip';
-import {findDOMNode} from 'react-dom'
-
+import Loader from "react-loader-spinner";
 
 
 class UserRegister extends Component {
@@ -17,7 +15,6 @@ class UserRegister extends Component {
 
             super(props)
 
-            
             this.state = {
                 msg: '' ,
                 error_status : '',
@@ -41,7 +38,9 @@ class UserRegister extends Component {
                 password_validation : 'valid',
                 confirm_password_validation : 'valid',
                 city_validation : 'valid',
-                mobile_no_validation : 'valid'
+                mobile_no_validation : 'valid',
+                load_class : 'loaderscreen_loaded',  //already load screen diplay none 
+                visibility : false, //when screem already loaded no loading image show
 
            }
 
@@ -58,7 +57,11 @@ class UserRegister extends Component {
 
     handleSubmit(event) {
 
-        ReactTooltip.show()
+            this.setState({
+                load_class : 'loaderscreen',
+                visibility : true,
+            })
+       
 
         event.preventDefault()
         const formData = {}
@@ -96,13 +99,18 @@ class UserRegister extends Component {
 
           .then(response => {
 
-                    console.log(response)
+            console.log(response)
+
+                    this.setState({
+                        load_class : 'loaderscreen_loaded',
+                        visibility : false,
+                    })
 
                 if(response.data.status == 0){
             
                     
                     if(response.data.errors.email != undefined){
-                        console.log("01")
+                      
                         this.setState({
                             email_validation : 'in_valid'
                         })
@@ -114,7 +122,7 @@ class UserRegister extends Component {
                     }
 
                     if(response.data.errors.password != undefined){
-                        console.log("01")
+                       
                         this.setState({
                             password_validation : 'in_valid'
                         })
@@ -126,7 +134,7 @@ class UserRegister extends Component {
                     }
 
                     if(response.data.errors.confirm_password != undefined){
-                        console.log("01")
+                        
                         this.setState({
                             confirm_password_validation : 'in_valid'
                         })
@@ -138,7 +146,7 @@ class UserRegister extends Component {
                     }
 
                     if(response.data.errors.first_name != undefined){
-                        console.log("01")
+                       
                         this.setState({
                             first_name_validation : 'in_valid'
                         })
@@ -150,7 +158,7 @@ class UserRegister extends Component {
                     }
 
                     if(response.data.errors.last_name != undefined){
-                        console.log("01")
+                        
                         this.setState({
                             last_name_validation : 'in_valid'
                         })
@@ -164,7 +172,7 @@ class UserRegister extends Component {
                     }
 
                     if(response.data.errors.city != undefined){
-                        console.log("01")
+                        
 
                         this.setState({
 
@@ -179,7 +187,7 @@ class UserRegister extends Component {
                     }
 
                     if(response.data.errors.mobile_no != undefined){
-                        console.log("01")
+                       
 
                         this.setState({
 
@@ -194,9 +202,6 @@ class UserRegister extends Component {
                     }
 
                     
-
-
-
                     this.setState({
 
                         error_status : 'error',
@@ -213,6 +218,16 @@ class UserRegister extends Component {
 
                         error_status : 'success', 
                         msg:'Please Check your Email for verification',
+                        first_name : '',
+                        last_name : '',
+                        email : '',
+                        password : '',
+                        confirm_password : '',
+                        city : '',
+                        mobile_no : ''
+
+                       
+                        
 
                         
                       })
@@ -231,7 +246,20 @@ class UserRegister extends Component {
 
         return (
                 <section>  
-                            <div class="container">
+
+            <div className={this.state.load_class}>
+           
+           <Loader
+                   type="Bars"
+                   color="black"
+                   height={100}
+                   width={100}
+                   visible={this.state.visibility}
+              
+               />
+
+           </div>
+                        <div class="container">
                                 <div class="row">
                 
                             <div class="col-12 col-lg-3"></div>
@@ -248,22 +276,21 @@ class UserRegister extends Component {
 
                                             {this.state.error_status == 'success'?
 
-                                                <div class="col-12 m-0 p-2 input-group">
+                                                <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
 
 
-                                                          <> 
+                                                          <div style={{paddingLeft:"8%"}}> 
+                                                          <FlashMessage duration={5000} persistOnHover={true}>
+                                                                        <h4 id="flash_message_heading">{this.state.msg}</h4>
 
-                                                          { ReactTooltip.show(this.success_msg_ref) }
-                                                           
-                                                            </>
+                                                          </FlashMessage>
+                                                            </div>
                                                         
                                                 </div>
 
                                             :null}
 
-                                            <ReactTooltip id='success_message'  getContent={() => { return this.state.msg }}/>
-                                            <br></br>
-                                            <div data-type="success"  data-effect="solid"  data-event-off="click"  data-for='success_message'  ref={ref => this.success_msg_ref = ref} data-tip=""></div>
+                                            
                                             
 
                                             <div class="row form-group-margin">
@@ -285,7 +312,7 @@ class UserRegister extends Component {
                                                         
                                                         <ReactTooltip id='name'  getContent={() => { return this.state.error_messages.first_name }}/>
 
-                                                    <input type="text" name="first_name" data-type="error"  data-effect="solid"  data-event-off="click" data-for='name'  ref={ref => this.first_name_ref = ref} data-tip="" className={this.state.first_name_validation}  onChange={this.handleChange}/>
+                                                    <input type="text" name="first_name" data-type="error"  data-effect="solid"  data-event-off="click" data-for='name'  ref={ref => this.first_name_ref = ref} data-tip="" className={this.state.first_name_validation} value={this.state.first_name}  onChange={this.handleChange}/>
                                                
                                                 </div>
 
@@ -309,7 +336,7 @@ class UserRegister extends Component {
 
                                                         <ReactTooltip id='last_name_r'  getContent={() => { return this.state.error_messages.last_name }}/>
                                                     
-                                                    <input type="text" name="last_name"  data-for='last_name_r' className={this.state.last_name_validation} ref={ref => this.last_name_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click"  onChange={this.handleChange}/>
+                                                    <input type="text" name="last_name" value={this.state.last_name}  data-for='last_name_r' className={this.state.last_name_validation} ref={ref => this.last_name_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click"  onChange={this.handleChange}/>
                                             </div>
                                                         
                                             {/* Last name input field handling  end here */}
@@ -342,7 +369,7 @@ class UserRegister extends Component {
 
                                                         <ReactTooltip id='email'  getContent={() => { return this.state.error_messages.email }}/>
 
-                                                    <input type="text" name="email"   className={this.state.email_validation} data-for='email' ref={ref => this.email_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" onChange={this.handleChange}/>
+                                                    <input type="text" name="email" value={this.state.email}   className={this.state.email_validation} data-for='email' ref={ref => this.email_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" onChange={this.handleChange}/>
                                                 
                                             </div>
 
@@ -367,11 +394,8 @@ class UserRegister extends Component {
 
 
                                                         <ReactTooltip id='password'  getContent={() => { return this.state.error_messages.password }}/>
-
-                                                   
-                                            
                                                 
-                                                    <input type="password" name="password" data-for='password' ref={ref => this.password_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" className={this.state.password_validation} onChange={this.handleChange}/>
+                                                    <input type="password" name="password" value={this.state.password} data-for='password' ref={ref => this.password_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" className={this.state.password_validation} onChange={this.handleChange}/>
                                                 
                                             </div>
 
@@ -392,7 +416,7 @@ class UserRegister extends Component {
                                             
                                                 :null } 
                                                    
-                                                    <input type="password" name="confirm_password" className={this.state.confirm_password_validation} onChange={this.handleChange}/>
+                                                    <input type="password" name="confirm_password" value={this.state.confirm_password} className={this.state.confirm_password_validation} onChange={this.handleChange}/>
                                                
                                                 </div>
 
@@ -403,8 +427,6 @@ class UserRegister extends Component {
                                                 <div class="col-12 col-md-6 col-lg-6 m-0 p-2 input-group">
                                                     
                                                     <label>City</label>
-
-                                                    
                                                     
                                                     {this.state.error_messages.city != undefined ?
                                                         <> 
@@ -418,7 +440,7 @@ class UserRegister extends Component {
 
                                                     <ReactTooltip id='city'  getContent={() => { return this.state.error_messages.city }}/>
                                                    
-                                                    <input type="text" name="city" data-for='city' className={this.state.city_validation} ref={ref => this.city_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" className={this.state.password_validation}  onChange={this.handleChange}/>
+                                                    <input type="text" name="city" data-for='city' value={this.state.city} className={this.state.city_validation} ref={ref => this.city_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click"   onChange={this.handleChange}/>
                                                 
                                                 </div>
 
@@ -443,7 +465,7 @@ class UserRegister extends Component {
                                                     <ReactTooltip id='mobile_no'  getContent={() => { return this.state.error_messages.mobile_no }}/>
                                                     
 
-                                                    <input type="text" name="mobile_no" data-for='city' data-for='mobile_no' className={this.state.city_validation} ref={ref => this.mobile_no_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" className={this.state.password_validation} className={this.state.mobile_no_validation}onChange={this.handleChange}/>
+                                                    <input type="text" name="mobile_no" data-for='mobile_no' value={this.state.mobile_no} data-for='mobile_no'  ref={ref => this.mobile_no_ref = ref} data-tip=""  data-type="error"  data-effect="solid"  data-event-off="click" className={this.state.mobile_no_validation} onChange={this.handleChange}/>
                                                 
                                                 </div>
 

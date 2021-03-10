@@ -1,6 +1,6 @@
 .loaderscreen {
     position: fixed;
-    z-index: 100;
+    z-index: 1000000000000000000000000000;
     top: 0;
     left: 0;
     width: 100%;
@@ -22,3 +22,13 @@
  .in_valid {
      border-color: red;
  }
+
+ #flash_message_heading {
+    border-radius: 5px;
+    background: green;
+    text-align: center;
+    color: white;
+    padding: 10px;
+
+ }
+    
