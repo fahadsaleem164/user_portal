@@ -5,7 +5,8 @@ import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router
 import {connect } from 'react-redux'
 import FlashMessage from 'react-flash-message'
 import Loader from "react-loader-spinner";
-import ScreenLoader from "../layout/ScreenLoader"
+import ScreenLoader from "../../layout/ScreenLoader"
+import Header from '../../layout/Header'
 
 class UserRegister extends Component {
 
@@ -269,6 +270,7 @@ class UserRegister extends Component {
         return (
             <>
             <>
+            <Header/>
             {this.state.state_full_lorem_ipsum == false?
                 <>
                         <Redirect to='/' />
@@ -281,21 +283,13 @@ class UserRegister extends Component {
 
             <section>
 
-            <div className={this.state.load_class}>
-           
-            <Loader
-                    type="Bars"
-                    color="black"
-                    height={100}
-                    width={100}
-                    visible={this.state.visibility}
-               
-                />
-
-            </div>
+        <ScreenLoader
+          load_class={this.state.load_class}
+          visiblity={this.state.visibility}
+        />
 
               
-            <div class="container" onLoad ={this.Work()}>
+            <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-3"></div>
                     <div class="col-12 col-lg-6">

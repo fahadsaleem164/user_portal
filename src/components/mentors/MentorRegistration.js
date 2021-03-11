@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
-import * as qs from "query-string";
-import FlashMessage from "react-flash-message";
-import ReactTooltip from "react-tooltip";
-import ScreenLoader from "../../layout/ScreenLoader";
+import axios from "axios"
+import * as qs from "query-string"
+import FlashMessage from "react-flash-message"
+import ScreenLoader from "../../layout/ScreenLoader"
 import Header from '../../layout/Header'
+import ReactTooltip from "react-tooltip"
+
 
 class UserRegister extends Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class UserRegister extends Component {
     this.state = {
       msg: "",
       error_status: "",
-      redirect: false,
       role_token: Params.get("role_token"),
       event_token: Params.get("event"),
       error_messages: [],
@@ -307,7 +307,7 @@ class UserRegister extends Component {
             <div class="col-12 col-lg-3"></div>
 
             <div class="col-12 col-lg-6">
-              <h1 style={{ textAlign: "center" }}>Navel Registration</h1>
+              <h1 style={{ textAlign: "center" }}>Mentor Registration</h1>
 
               <form
                 name="user form"

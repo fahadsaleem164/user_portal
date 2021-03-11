@@ -5,6 +5,7 @@ import axios from "axios"
 import * as qs from "query-string"
 import StepWizard from 'react-step-wizard';
 import FlashMessage from 'react-flash-message'
+import Header from '../../layout/Header'
 
 
 class AddNewTeam extends Component {
@@ -111,6 +112,7 @@ class AddNewTeam extends Component {
 
         return (
             <>
+            <Header/>
                     {/* First of all check user login if not login then redirect to home page */}
                     {this.state.state_full_lorem_ipsum == false?
                         <>

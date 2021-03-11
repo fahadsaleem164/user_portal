@@ -170,7 +170,7 @@ class Header extends Component {
                                                     <a href="#" style={{background:"#058283"}}  class="smooth-anchor btn ml-lg-auto primary-button">My Account<i class="icon-arrow-down"></i></a>
                                                     <ul class="dropdown-menu">
                                                         <li class="nav-item dropdown">
-                                                            <Link class="nav-link" to={'/user_profile'}>Assigned to a team/idea</Link> 
+                                                            <Link class="nav-link" to={'/mentor_profile'}>Edit Profile</Link> 
                                                             <Link class="nav-link" to={'/add_new_team'}>Evaluate Teams</Link>
                                                             <hr></hr>
                                                             <Logout />

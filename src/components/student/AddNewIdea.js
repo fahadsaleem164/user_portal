@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {useForm, userForm , useStep} from 'react-hooks-helper'
-// import  Names  from './StepForm/Names'IdeathonEntry
 import UserNameTeamLead  from './StepForm/UserNameTeamLead'
 import IdeathonEntry  from './StepForm/IdeathonEntry'
 import AgreeTerms  from './StepForm/AgreeTerms'
+
 
 const defaultData = {
     firstName : "",
@@ -46,8 +46,9 @@ const MultiFormRegistraion = () => {
 
     return (
         <>
-            Working
         
+       
+   
         </>
     )
     

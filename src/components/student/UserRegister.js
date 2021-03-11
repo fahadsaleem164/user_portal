@@ -3,8 +3,8 @@ import axios from "axios";
 import * as qs from "query-string";
 import FlashMessage from "react-flash-message";
 import ReactTooltip from "react-tooltip";
-import ScreenLoader from "../layout/ScreenLoader";
-import ModalEvent from "../layout/Modal";
+import ScreenLoader from "../../layout/ScreenLoader";
+import Header from '../../layout/Header'
 
 class UserRegister extends Component {
   constructor(props) {
@@ -13,8 +13,6 @@ class UserRegister extends Component {
     super(props);
 
     this.state = {
-      open: false,
-      setOpen: false,
       msg: "",
       error_status: "",
       redirect: false,
@@ -152,6 +150,7 @@ class UserRegister extends Component {
     this.setState({
       load_class : 'loaderscreen',
       visibility : true,
+      error_status : ""
     });
 
     event.preventDefault();
@@ -293,7 +292,10 @@ class UserRegister extends Component {
 
   render() {
     return (
+      <>
+      <Header/>
       <section>
+       
         <ScreenLoader
           load_class={this.state.load_class}
           visiblity={this.state.visibility}
@@ -313,23 +315,10 @@ class UserRegister extends Component {
                 onSubmit={(event) => this.handleSubmit(event)}
               >
               
-              {/* Display success error */}
-              {/* {this.state.error_status == "success" ? (
-                  <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                    <div style={{ paddingLeft: "8%" }}>
-                      <FlashMessage duration={5000} persistOnHover={true}>
-                        <h3 id="flash_errror_message_heading">{this.state.msg}</h3>
-                      </FlashMessage>
-                    </div>
-                  </div>
-                ) : null} */}
-
-                {/* Display success message */}
-
                 {this.state.error_status == "success" ? (
                   <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
                     <div style={{ paddingLeft: "8%" }}>
-                      <FlashMessage duration={5000} persistOnHover={true}>
+                      <FlashMessage duration={4000} persistOnHover={true}>
                         <h5 id="flash_message_heading">{this.state.msg}</h5>
                       </FlashMessage>
                     </div>
@@ -583,6 +572,7 @@ class UserRegister extends Component {
           </div>
         </div>
       </section>
+      </>
     );
   }
 }

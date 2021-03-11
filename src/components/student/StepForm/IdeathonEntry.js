@@ -1,10 +1,12 @@
 import React from 'react';
-
+import Header from '../../../layout/Header'
 
 
 function IdeathonEntry({formData , setForm , navigation}) {
 
                         return (
+                            <>
+                            <Header/>
                             <section>
                                 <div class="container" >
                                     <div class="row">
@@ -141,6 +143,7 @@ function IdeathonEntry({formData , setForm , navigation}) {
                                 
                                 </div>
                         </section>
+                        </>
 
     );
 }

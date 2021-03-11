@@ -3,6 +3,7 @@ import axios from "axios"
 import * as qs from "query-string"
 import { Redirect  , BrowserRouter as Router , Route , Link } from "react-router-dom"
 import {connect } from 'react-redux'
+import Header from '../layout/Header'
 
 class Login extends Component {
 
@@ -97,7 +98,8 @@ class Login extends Component {
 
     render() {
            
-        return (
+        return (     <>
+                    <Header/>
                     <section >
                        
                             <div class="container">
@@ -169,7 +171,8 @@ class Login extends Component {
                                     <div class="col-12 col-lg-3"></div>
                                 </div>
                             </div>
-             </section>  
+             </section> 
+             </> 
          
         );
     }
