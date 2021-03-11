@@ -312,13 +312,25 @@ class UserRegister extends Component {
                 method="POST"
                 onSubmit={(event) => this.handleSubmit(event)}
               >
+              
+              {/* Display success error */}
+              {/* {this.state.error_status == "success" ? (
+                  <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+                    <div style={{ paddingLeft: "8%" }}>
+                      <FlashMessage duration={5000} persistOnHover={true}>
+                        <h3 id="flash_errror_message_heading">{this.state.msg}</h3>
+                      </FlashMessage>
+                    </div>
+                  </div>
+                ) : null} */}
+
                 {/* Display success message */}
 
                 {this.state.error_status == "success" ? (
                   <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
                     <div style={{ paddingLeft: "8%" }}>
                       <FlashMessage duration={5000} persistOnHover={true}>
-                        <h4 id="flash_message_heading">{this.state.msg}</h4>
+                        <h3 id="flash_message_heading">{this.state.msg}</h3>
                       </FlashMessage>
                     </div>
                   </div>

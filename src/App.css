@@ -34,3 +34,11 @@
     padding: 10px;
 
  }
+ #flash_errror_message_heading {
+    border-radius: 5px;
+    background:red;
+    text-align: center;
+    color: white;
+    padding: 10px;
+
+ }
