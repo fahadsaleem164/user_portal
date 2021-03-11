@@ -330,7 +330,7 @@ class UserRegister extends Component {
                   <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
                     <div style={{ paddingLeft: "8%" }}>
                       <FlashMessage duration={5000} persistOnHover={true}>
-                        <h3 id="flash_message_heading">{this.state.msg}</h3>
+                        <h5 id="flash_message_heading">{this.state.msg}</h5>
                       </FlashMessage>
                     </div>
                   </div>
