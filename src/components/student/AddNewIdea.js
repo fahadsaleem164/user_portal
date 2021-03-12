@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import {useForm, userForm , useStep} from 'react-hooks-helper'
-import UserNameTeamLead  from './StepForm/UserNameTeamLead'
-import IdeathonEntry  from './StepForm/IdeathonEntry'
+import UserNameTeamLead  from './StepForm/UserNameTeamLead'  //first step registartion form
+import IdeathonEntry  from './StepForm/IdeathonEntry'        //second step registartion form
 import AgreeTerms  from './StepForm/AgreeTerms'
 
 
 const defaultData = {
+
     firstName : "",
     lastName : "",
     nickName : ""
+
 }
 
 const steps = [

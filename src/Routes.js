@@ -13,6 +13,8 @@ import Registration from './components/NavelPerson/Registration'
 import NavelProfile from './components/NavelPerson/NavelProfile'
 import Login from './components/Login'
 import Page404 from './layout/Page_404'
+import RegisterIdea from './components/student/RegisterIdea'
+
 // import PrivateRoute from './layout/PrivateRoute'
 
 function Routes(props) {
@@ -28,7 +30,7 @@ function Routes(props) {
              <Route exact path='/navel_register' component={Registration}/>
              <Route exact path='/verify_code' component={UserVerify}/>
              <Route exact path='/login' component={Login}/>
-             <Route exact path='/add_new_idea' component={AddNewIdea}/>
+             <Route exact path='/add_new_idea' component={RegisterIdea}/>
              <Route exact path='/add_new_team' component={AddNewTeam}/>
              <Route exact path='/user_profile' component={UserProfile}/>
              <Route exact path='/mentor_profile' component={MentorProfile}/>

@@ -566,10 +566,10 @@ input[type="submit"]:hover {
     border-color: var(--primary-color);
 }
 
-input[type=checkbox] {
+/* input[type=checkbox] {
     width: 20px;
     height: 20px;
-}
+} */
 
 textarea {
     height: 100px;

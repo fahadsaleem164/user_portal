@@ -2,8 +2,8 @@ import React from 'react';
 import Header from '../../../layout/Header'
 function UserNameTeamLead({formData , setForm , navigation}) {
 
-    console.log(navigation)
-
+    console.log(formData)
+    console.log("username")
 
     return (
         <><Header/>

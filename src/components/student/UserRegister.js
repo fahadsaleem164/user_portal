@@ -19,7 +19,6 @@ class UserRegister extends Component {
       role_token: Params.get("role_token"),
       event_token: Params.get("event"),
       error_messages: [],
-      keys_messages: [],
       error_border_color: "error_border_color_red",
       first_name: "",
       last_name: "",

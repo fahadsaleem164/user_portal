@@ -3,7 +3,8 @@ import Header from '../../../layout/Header'
 
 
 function IdeathonEntry({formData , setForm , navigation}) {
-
+console.log(formData)
+console.log("ideathon entry")
                         return (
                             <>
                             <Header/>
