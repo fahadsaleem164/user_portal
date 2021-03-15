@@ -3,7 +3,7 @@ import Loader from "react-loader-spinner"
 class ScreenLoader extends Component {
 
     render() {
-        console.log(this.props)
+    
      
         return (
 

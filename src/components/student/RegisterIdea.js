@@ -15,6 +15,7 @@ import ReactTooltip from "react-tooltip";
 class RegisterIdea extends Component {
   constructor(props) {
     super(props);
+
     //Get local storage value here  start here
     if (localStorage.getItem("state_full_lorem_ipsum") == null) {
       this.state = {
@@ -51,13 +52,72 @@ class RegisterIdea extends Component {
         data_tip_disable_tag_line: false,
         data_tip_disable_explain_reason: false,
         questions: [],
+        answer_res: {},
+        ques : '',
+        ans : ''
+     
+
+      
       };
     }
   }
+
+
+  handlChangeQuestions = (event) => {
+
+    this.state.ques = event.target.id.split("q_a")[0];
+    this.state.ans =  event.target.id.split("q_a")[1]
+
+    if (this.state.answer_res[this.state.ques] !== undefined) {
+      
+
+
+      if (event.target.type === "checkbox"){
+
+      if(event.target.checked === false){
+      
+          
+         this.state.answer_res[this.state.ques].splice(this.state.answer_res[this.state.ques].indexOf(this.state.ans), 1) 
+        //  console.log(this.state.answer_res)      
+     
+  
+    } else
+
+        if(this.state.answer_res[this.state.ques].includes(this.state.ans) == true) {
+            // console.log("already exist")
+        
+          } else { 
+            // console.log("ok")
+     
+          this.state.answer_res[this.state.ques] = this.state.answer_res[
+            this.state.ques
+          ].concat(this.state.ans);
+        
+        }
+        
+       }  else {
+      
+        this.state.answer_res[this.state.ques] = [
+          this.state.ans
+        ];
+    }  } else {
+     
+      this.state.answer_res[this.state.ques] = [
+        this.state.ans
+      ];
+    }
+
+
+    console.log(this.state.answer_res)
+
+  }
   //   onchange value input filed get data from fields
   handleChange = (event) => {
+
     this.setState({ [event.target.name]: event.target.value });
 
+    
+  
     if (event.target.name == "name" && event.target.value == "") {
       this.setState({
         name_validation: "in_valid",
@@ -168,7 +228,11 @@ class RegisterIdea extends Component {
 
     axios(axiosOptions)
       .then((response) => {
-        // console.log(response.data.data.question[0].answer)
+        // {this.state.data.map((data , index) => (
+        //   console.log()
+        //   ))}
+
+        console.log(response.data.data.question);
 
         this.setState({
           questions: response.data.data.question,
@@ -178,6 +242,7 @@ class RegisterIdea extends Component {
   }
 
   handleSubmit(event) {
+
     event.preventDefault();
 
     this.setState({
@@ -188,15 +253,44 @@ class RegisterIdea extends Component {
 
     let formdata = new FormData();
 
-    formdata.append("name", this.state.name);
-    formdata.append("tag_line", this.state.tag_line);
-    formdata.append("description", this.state.description);
-    formdata.append("problem_statement", this.state.problem_statement);
-    formdata.append("innovation", this.state.innovation);
-    formdata.append("idea_impact", this.state.idea_impact);
-    formdata.append("explain_reason", this.state.explain_reason);
-    formdata.append("exp_reason", this.state.exp_reason);
+    formdata.append("name","dfsfsdf");
+    formdata.append("tag_line", "dfsfsdf");
+    formdata.append("description", "dfsfsdf");
+    formdata.append("problem_statement", "dfsfsdf")
+    formdata.append("innovation", "dfsfsdf");
+    formdata.append("idea_impact", "dfsfsdf");
+    formdata.append("explain_reason", "dfsfsdf");
+    //  formdata.append("exp_reason", "dfsfsdf");
+    formdata.append("question_answers", {
+      "1": [
+          1,2,3
+      ],
+      "2": [
+          10,11
+      ],
+      "3": [
+          14,15
+      ]
+  });
     formdata.append("event_token", this.state.event_token);
+
+    console.log(this.state.answer_res)
+
+    var object = {};
+    formdata.forEach((value, key) => object[key] = value);
+    var json = JSON.stringify(object);
+
+    console.log(json)
+
+    for (var key of formdata.entries()) {
+      
+      // // console.log(key[1])
+      // formdata[key[0]] = key[1]
+      // console.log(key[1])
+      // console.log(formdata[key[0]]) 
+    }
+
+    // console.log(""JSON.stringify(formdata))
 
     axios({
       url: process.env.React_App_API_URL + "student/idea",
@@ -205,7 +299,7 @@ class RegisterIdea extends Component {
         "content-type": "application/json",
         Authorization: `Bearer ${this.state.token}`,
       },
-      data: formdata,
+      data: json,
     }).then((response) => {
       console.log(response);
       this.setState({
@@ -213,10 +307,12 @@ class RegisterIdea extends Component {
         visibility: false,
       });
       if (response.data.status == 0) {
+
         this.setState({
           error_status: "error",
           msg: response.data.message,
           error_messages: response.data.errors,
+
         });
 
         if (response.data.status == 0) {
@@ -461,7 +557,7 @@ class RegisterIdea extends Component {
                             data-for="problem_statement"
                             ref={(ref) => (this.problem_statement_ref = ref)}
                             data-tip=""
-                            value={this.state.description}
+                            value={this.state.problem_statement}
                             onChange={this.handleChange}
                             className={this.state.problem_statement_validation}
                           ></textarea>
@@ -529,26 +625,52 @@ class RegisterIdea extends Component {
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
                           {this.state.questions.map((data, index) => (
                             <>
-                              {/* <div class="row">
-                              <h2 for="description">{data.question}</h2> <br />
-                            </div> */}
                               <h3 for="description">{data.question}</h3>
+                              {data.type == "multiple" ? (
+                                <>
+                                  {data.answer.map((val) => {
+                                    return (
+                                      <>
+                                        <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+                                          <div className="form-inline"></div>
+                                          <div>
+                                            {" "}
+                                            <label>
+                                              <input
+                                                type="checkbox"
+                                                name={val.id}
+                                                id={data.id + "q_a" + val.id}
+                                                onChange={this.handlChangeQuestions}
+                                              />{" "}
+                                              {val.answer}
+                                            </label>{" "}
+                                          </div>
+                                        </div>
+                                      </>
+                                    );
+                                  })}
+                                </>
+                              ) : null}
 
-                              {data.answer.map((val) => {
-                                return (
-                                  <>
-                                    <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                                      <div className="form-inline"></div>
-                                      <div>
-                                        {" "}
-                                        <label>
-                                          <input type="checkbox" /> {val.answer}
-                                        </label>{" "}
+                              {data.type == "single" ? (
+                                <>
+                                  {data.answer.map((val) => {
+                                    return (
+                                      <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+                                        <div>
+                                          <input
+                                            type="radio"
+                                            id={data.id + "q_a" + val.id}
+                                            name={index}
+                                            onChange={this.handlChangeQuestions}
+                                          />
+                                          <label>{val.answer}</label>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </>
-                                );
-                              })}
+                                    );
+                                  })}
+                                </>
+                              ) : null}
                             </>
                           ))}
                         </div>
