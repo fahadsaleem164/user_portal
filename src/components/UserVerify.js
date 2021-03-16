@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios"
 import * as qs from "query-string"
-
+import Header from '../layout/Header'
 
 
 
@@ -95,7 +95,10 @@ class UserVerify extends Component {
     render() {
 
         return (
+            <>
+            <Header/>
             <section>
+                
                         <div class="container">
                             <div class="row">
                             <div class="col-12 col-lg-4"></div>
@@ -142,7 +145,7 @@ class UserVerify extends Component {
                         </div>
                     </section>
 
-
+</>
         );
     }
 }

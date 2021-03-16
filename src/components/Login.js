@@ -34,6 +34,8 @@ class Login extends Component {
 
       handleSubmit(event) {
 
+        console.log(this.state.event)
+
         event.preventDefault()
 
         const formData = {}

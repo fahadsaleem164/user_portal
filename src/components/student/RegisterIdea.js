@@ -265,10 +265,10 @@ class RegisterIdea extends Component {
       "1": [
           1,2,3
       ],
-      "2": [
+      2: [
           10,11
       ],
-      "3": [
+      3: [
           14,15
       ]
   });
