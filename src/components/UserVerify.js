@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import axios from "axios"
 import * as qs from "query-string"
 import Header from '../layout/Header'
-
+import {
+    Redirect,
+    BrowserRouter as Router,
+    Route,
+    Link,
+  } from "react-router-dom";
 
 
 class UserVerify extends Component {
@@ -116,7 +121,10 @@ class UserVerify extends Component {
 
                         {this.state.errorStatus == 'success'?
                             <div class="col-12 m-0 p-2 input-group">
-                                   <p style={{color:'green'}}>{this.state.msg}</p>
+                                <>
+                                    <Redirect to={'/login?event=eyJpdiI6IlR3WUpTNmRSeEtjUGhsN1lFUWJWMFE9PSIsInZhbHVlIjoiTm1qZXJPaXFmS1Urakl5SjF3SFNpUT09IiwibWFjIjoiYzExZDY1MjljMmQyMmQzZTE4Y2M4Mzk3YTlmYTU4MGIyYmYxYmZiMTQ0ODFhNGQ2NmE0ZDE2OTU2YWFhYjc5NCJ9'} />
+                                </>
+                                   {/* <p style={{color:'green'}}>{this.state.msg}</p> */}
                                 </div>
                             :null}
 
