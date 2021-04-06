@@ -52,9 +52,11 @@ class RegisterIdea extends Component {
         data_tip_disable_tag_line: false,
         data_tip_disable_explain_reason: false,
         questions: [],
-        answer_res: {},
+        answer_res: [],
         ques : '',
-        ans : ''
+        ans : '',
+        ques_ans : [],
+        myarray : []
      
 
       
@@ -67,6 +69,16 @@ class RegisterIdea extends Component {
 
     this.state.ques = event.target.id.split("q_a")[0];
     this.state.ans =  event.target.id.split("q_a")[1]
+
+    this.state.ques_ans.push(
+      {
+      "question": this.state.ques ,
+      "answer" :  this.state.ans
+     }
+    )
+
+    console.log(this.state.ques_ans)
+  
 
     if (this.state.answer_res[this.state.ques] !== undefined) {
       
@@ -251,155 +263,130 @@ class RegisterIdea extends Component {
       error_status: "",
     });
 
-    let formdata = new FormData();
-
-    formdata.append("name","dfsfsdf");
-    formdata.append("tag_line", "dfsfsdf");
-    formdata.append("description", "dfsfsdf");
-    formdata.append("problem_statement", "dfsfsdf")
-    formdata.append("innovation", "dfsfsdf");
-    formdata.append("idea_impact", "dfsfsdf");
-    formdata.append("explain_reason", "dfsfsdf");
-    //  formdata.append("exp_reason", "dfsfsdf");
-    formdata.append("question_answers", {
-      "1": [
-          1,2,3
-      ],
-      2: [
-          10,11
-      ],
-      3: [
-          14,15
-      ]
-  });
-    formdata.append("event_token", this.state.event_token);
-
-    console.log(this.state.answer_res)
-
-    var object = {};
-    formdata.forEach((value, key) => object[key] = value);
-    var json = JSON.stringify(object);
-
-    console.log(json)
-
-    for (var key of formdata.entries()) {
-      
-      // // console.log(key[1])
-      // formdata[key[0]] = key[1]
-      // console.log(key[1])
-      // console.log(formdata[key[0]]) 
-    }
-
-    // console.log(""JSON.stringify(formdata))
 
     axios({
+      method: 'post',
       url: process.env.React_App_API_URL + "student/idea",
-      method: "POST",
       headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${this.state.token}`,
-      },
-      data: json,
+            Authorization: `Bearer ${this.state.token}`,
+          },
+      data: {
+        name:this.state.name,
+        tag_line: this.state.tag_line,
+        description: this.state.description,
+        problem_statement: this.state.problem_statement,
+        innovation: this.state.innovation,
+        idea_impact: this.state.idea_impact,
+        explain_reason: this.state.explain_reason,
+        question_answers:this.state.ques_ans,
+        event_token:this.state.event_token
+      }
     }).then((response) => {
+      
       console.log(response);
-      this.setState({
-        load_class: "loaderscreen_loaded",
-        visibility: false,
-      });
-      if (response.data.status == 0) {
-
         this.setState({
-          error_status: "error",
-          msg: response.data.message,
-          error_messages: response.data.errors,
-
+          load_class: "loaderscreen_loaded",
+          visibility: false,
         });
 
         if (response.data.status == 0) {
-          if (response.data.errors.name != undefined) {
-            this.setState({
-              name_validation: "in_valid",
-              data_tip_disable_name: false,
-            });
-          } else {
-            this.setState({
-              name_validation: "valid",
-            });
-          }
 
-          if (response.data.errors.tag_line != undefined) {
-            this.setState({
-              tag_line_validation: "in_valid",
-              data_tip_disable_tag_line: false,
-            });
-          } else {
-            this.setState({
-              tag_line_validation: "valid",
-            });
-          }
+              this.setState({
+                error_status: "error",
+                msg: response.data.message,
+                error_messages: response.data.errors,
+      
+              });
+      
+              if (response.data.status == 0) {
+                if (response.data.errors.name != undefined) {
+                  this.setState({
+                    name_validation: "in_valid",
+                    data_tip_disable_name: false,
+                  });
+                } else {
+                  this.setState({
+                    name_validation: "valid",
+                  });
+                }
+      
+                if (response.data.errors.tag_line != undefined) {
+                  this.setState({
+                    tag_line_validation: "in_valid",
+                    data_tip_disable_tag_line: false,
+                  });
+                } else {
+                  this.setState({
+                    tag_line_validation: "valid",
+                  });
+                }
+      
+                if (response.data.errors.description != undefined) {
+                  this.setState({
+                    description_validation: "in_valid",
+                    data_tip_disable_description: false,
+                  });
+                } else {
+                  this.setState({
+                    description_validation: "valid",
+                  });
+                }
+      
+                if (response.data.errors.problem_statement != undefined) {
+                  this.setState({
+                    problem_statement_validation: "in_valid",
+                    data_tip_disable_problem_statement: false,
+                  });
+                } else {
+                  this.setState({
+                    problem_statement_validation: "valid",
+                  });
+                }
+      
+                if (response.data.errors.innovation != undefined) {
+                  this.setState({
+                    innovation_validation: "in_valid",
+                    data_tip_disable_innovation: false,
+                  });
+                } else {
+                  this.setState({
+                    innovation_validation: "valid",
+                  });
+                }
+      
+                if (response.data.errors.idea_impact != undefined) {
+                  this.setState({
+                    idea_impact_validation: "in_valid",
+                    data_tip_disable_idea_impact: false,
+                  });
+                } else {
+                  this.setState({
+                    idea_impact_validation: "valid",
+                  });
+                }
+      
+                if (response.data.errors.explain_reason != undefined) {
+                  this.setState({
+                    explain_reason_validation: "in_valid",
+                    data_tip_disable_explain_reason: false,
+                  });
+                } else {
+                  this.setState({
+                    explain_reason_validation: "valid",
+                  });
+                }
+              }
+            }else {
+                  this.setState({
+                    error_status: "success",
+                    msg: response.data.message,
+                  });
+                }
 
-          if (response.data.errors.description != undefined) {
-            this.setState({
-              description_validation: "in_valid",
-              data_tip_disable_description: false,
-            });
-          } else {
-            this.setState({
-              description_validation: "valid",
-            });
-          }
-
-          if (response.data.errors.problem_statement != undefined) {
-            this.setState({
-              problem_statement_validation: "in_valid",
-              data_tip_disable_problem_statement: false,
-            });
-          } else {
-            this.setState({
-              problem_statement_validation: "valid",
-            });
-          }
-
-          if (response.data.errors.innovation != undefined) {
-            this.setState({
-              innovation_validation: "in_valid",
-              data_tip_disable_innovation: false,
-            });
-          } else {
-            this.setState({
-              innovation_validation: "valid",
-            });
-          }
-
-          if (response.data.errors.idea_impact != undefined) {
-            this.setState({
-              idea_impact_validation: "in_valid",
-              data_tip_disable_idea_impact: false,
-            });
-          } else {
-            this.setState({
-              idea_impact_validation: "valid",
-            });
-          }
-
-          if (response.data.errors.explain_reason != undefined) {
-            this.setState({
-              explain_reason_validation: "in_valid",
-              data_tip_disable_explain_reason: false,
-            });
-          } else {
-            this.setState({
-              explain_reason_validation: "valid",
-            });
-          }
-        }
-      } else {
-        this.setState({
-          error_status: "success",
-          msg: response.data.message,
-        });
-      }
     });
+
+    
+
   }
 
   render() {
@@ -445,10 +432,13 @@ class RegisterIdea extends Component {
                             <p style={{ color: "green" }}>{this.state.msg}</p>
                           </div>
                         ) : null}
+
+
+
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                          {this.state.error_messages.name != undefined ? (
+                          {/* {this.state.error_messages.name != undefined ? (
                             <>{ReactTooltip.show(this.name_ref)}</>
-                          ) : null}
+                          ) : null} */}
 
                           <ReactTooltip
                             id="name"
