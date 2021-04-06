@@ -67,7 +67,7 @@ class UserRegister extends Component {
       componentDidMount(){
 
         const axiosOptions = {
-            url: process.env.React_App_API_URL + 'student/get_profile?event_token='+ this.state.event_token,
+            url: process.env.React_App_API_URL + 'student/profile?event_token='+ this.state.event_token,
             method: "get",
             headers: {
                 'Authorization': `Bearer ${this.state.token}`
@@ -212,8 +212,8 @@ class UserRegister extends Component {
 
         const axiosOptions = {
 
-          url: process.env.React_App_API_URL + 'student/update_profile',
-          method: "post",
+          url: process.env.React_App_API_URL + 'student/profile',
+          method: "put",
           headers: { 
               "Content-Type": "application/x-www-form-urlencoded",
               'Authorization': `Bearer ${this.state.token}`

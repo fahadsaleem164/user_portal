@@ -47,7 +47,7 @@ class MentorProfile extends Component {
     const axiosOptions = {
       url:
         process.env.React_App_API_URL +
-        "mentor/get_profile?event_token=" +
+        "mentor/profile?event_token=" +
         this.state.event_token,
       method: "get",
       headers: {
@@ -166,8 +166,8 @@ class MentorProfile extends Component {
     }
     console.log(formData);
     const axiosOptions = {
-      url: process.env.React_App_API_URL + "mentor/update_profile",
-      method: "post",
+      url: process.env.React_App_API_URL + "mentor/profile",
+      method: "put",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${this.state.token}`,
