@@ -218,7 +218,7 @@ class RegisterIdea extends Component {
     const axiosOptions = {
       url:
         process.env.React_App_API_URL +
-        "student/event_q_ans?event_token=" +
+        "student/event-q-ans?event_token=" +
         this.state.event_token,
       method: "get",
       headers: {
@@ -632,7 +632,7 @@ class RegisterIdea extends Component {
                                     return (
                                       <>
                                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                                          <div className="form-inline"></div>
+                                          {/* <div className="form-inline"></div> */}
                                           <div>
                                             {" "}
                                             <label>
@@ -658,13 +658,15 @@ class RegisterIdea extends Component {
                                     return (
                                       <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
                                         <div>
-                                          <input
-                                            type="radio"
-                                            id={data.id + "q_a" + val.id}
-                                            name={index}
-                                            onChange={this.handlChangeQuestions}
-                                          />
-                                          <label>{val.answer}</label>
+                                            
+                                          <label>
+                                            <input
+                                              type="radio"
+                                              id={data.id + "q_a" + val.id}
+                                              name={index}
+                                              onChange={this.handlChangeQuestions} />
+                                                {val.answer}
+                                          </label>
                                         </div>
                                       </div>
                                     );
