@@ -145,6 +145,7 @@ class Header extends Component {
                                                                         <Link class="nav-link" to={'/user_profile'}>Edit Profile</Link> 
                                                                         <Link class="nav-link" to={'/add_new_team'}>New Team</Link>
                                                                         <Link class="nav-link" to={'/add_new_idea'}>Register an Idea</Link>
+                                                                        <Link class="nav-link" to={'/get_idea'}>Idea</Link>
                                                                         <hr></hr>
                                                                         <Logout />
                                                                     </li>
