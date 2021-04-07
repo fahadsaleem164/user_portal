@@ -27,8 +27,8 @@ class GetIdea extends Component {
             state_full_lorem_ipsum: true,
             token: localStorage.getItem("token"),
             event_token: localStorage.getItem("event_token"),
-            load_class: "loaderscreen_loaded", //already load screen diplay none
-            visibility: false,  
+            load_class: "loaderscreen", //already load screen diplay none
+            visibility: true,  
             data:[],
             questions_ansawers : []
           };
@@ -53,7 +53,9 @@ class GetIdea extends Component {
           .then((response) => {
         
             this.setState({
-               
+                
+                load_class: "loaderscreen_loaded",
+                visibility:false,
                 data : response.data.data,
                 questions_ansawers : response.data.data.user_answer_of_idea
 
@@ -81,7 +83,7 @@ render() {
                     <>
                         <Header/>
 
-                        <section id="slider" class="hero p-0 odd featured">
+                        {/* <section id="slider" class="hero p-0 odd featured">
             <div class="swiper-container no-slider animation slider-h-50 slider-h-auto">
                 <div class="swiper-wrapper">
 
@@ -103,9 +105,13 @@ render() {
 
                 </div>
             </div>
-        </section>
+        </section> */}
 
-     
+
+        <ScreenLoader
+              load_class={this.state.load_class}
+              visiblity={this.state.visibility}
+            />
         <section id="single" class="section-1 single">
             <div class="container">
                 <div class="row">
