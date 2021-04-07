@@ -56,7 +56,8 @@ class RegisterIdea extends Component {
         ques : '',
         ans : '',
         ques_ans : [],
-        myarray : []
+        question_and_ans_error_msg : ''
+
      
 
       
@@ -279,7 +280,7 @@ class RegisterIdea extends Component {
         idea_impact: this.state.idea_impact,
         explain_reason: this.state.explain_reason,
         question_answers:this.state.ques_ans,
-        event_token:this.state.event_token
+        event_token:this.state.event_token,
       }
     }).then((response) => {
       
@@ -291,13 +292,24 @@ class RegisterIdea extends Component {
 
         if (response.data.status == 0) {
 
+          console.log(response.data.errors)
+
+          if(response.data.errors != undefined){
+
+            console.log('undefined value undefined')
+          
+          }
+        
+
               this.setState({
                 error_status: "error",
                 msg: response.data.message,
                 error_messages: response.data.errors,
       
               });
-      
+
+          
+            if(response.data.errors != undefined){
               if (response.data.status == 0) {
                 if (response.data.errors.name != undefined) {
                   this.setState({
@@ -376,6 +388,18 @@ class RegisterIdea extends Component {
                   });
                 }
               }
+
+              if (response.data.errors.question_answers != undefined) {
+                this.setState({
+                     question_and_ans_error_msg : response.data.errors.question_answers[0]
+                });
+              } else {
+                this.setState({
+                  explain_reason_validation: "valid",
+                });
+              }
+            }
+            
             }else {
                   this.setState({
                     error_status: "success",
@@ -390,6 +414,9 @@ class RegisterIdea extends Component {
   }
 
   render() {
+
+
+
     return (
       <>
         {/* First of all check user login if not login then redirect to home page */}
@@ -421,6 +448,15 @@ class RegisterIdea extends Component {
                     >
                       <div class="row form-group-margin">
                         {/* Display validation error */}
+
+                        {this.state.question_and_ans_error_msg != "" ? (
+                          <div class="col-12 m-0 p-2 input-group">
+                            <p style={{ color: "red" }}>{this.state.question_and_ans_error_msg}</p>
+                          </div>
+                        ) : null}
+
+
+
                         {this.state.error_status == "error" ? (
                           <div class="col-12 m-0 p-2 input-group">
                             <p style={{ color: "red" }}>{this.state.msg}</p>
@@ -433,19 +469,31 @@ class RegisterIdea extends Component {
                           </div>
                         ) : null}
 
+                        
+
 
 
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                          {/* {this.state.error_messages.name != undefined ? (
-                            <>{ReactTooltip.show(this.name_ref)}</>
-                          ) : null} */}
+                           
+                            {/* error_messages */}
+                          {this.state.error_messages != undefined ? (
 
-                          <ReactTooltip
-                            id="name"
-                            getContent={() => {
-                              return this.state.error_messages.name;
-                            }}
-                          />
+                            <>
+                               {this.state.error_messages.name != undefined ? (
+                                 <>
+                                {ReactTooltip.show(this.name_ref)}
+                                <ReactTooltip
+                                  id="name"
+                                  getContent={() => {
+                                    return this.state.error_messages.name;
+                                  }}
+                                />
+                                </>
+                                ): null}
+                            </>
+                            ) : null}
+
+                        
                           <label for="name">Name</label>
                           <input
                             type="text"
@@ -463,16 +511,24 @@ class RegisterIdea extends Component {
                           />
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
-                          {this.state.error_messages.tag_line != undefined ? (
-                            <>{ReactTooltip.show(this.tag_line_ref)}</>
-                          ) : null}
+                        {this.state.error_messages != undefined ? (
 
-                          <ReactTooltip
+                          <>
+                          {this.state.error_messages.tag_line != undefined ? (
+                            <>{ReactTooltip.show(this.tag_line_ref)}
+                             <ReactTooltip
                             id="tag_line"
                             getContent={() => {
                               return this.state.error_messages.tag_line;
                             }}
                           />
+                            </>
+                          ) : null}
+
+                          </>
+                          ) : null}
+
+                         
 
                           <label for="tagline">Tagline</label>
                           <input
@@ -493,17 +549,24 @@ class RegisterIdea extends Component {
                           />
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+
+                        {this.state.error_messages != undefined ? (
+                          <>
                           {this.state.error_messages.description !=
                           undefined ? (
-                            <>{ReactTooltip.show(this.description_ref)}</>
-                          ) : null}
-
-                          <ReactTooltip
+                            <>{ReactTooltip.show(this.description_ref)}
+                             <ReactTooltip
                             id="description"
                             getContent={() => {
                               return this.state.error_messages.description;
                             }}
                           />
+                            </>
+                          ) : null}
+                          </>
+                          ) : null}
+
+
                           <label for="description">Description</label>
                           <textarea
                             name="description"
@@ -522,18 +585,27 @@ class RegisterIdea extends Component {
                           ></textarea>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+
+                        {this.state.error_messages != undefined ? (
+                          <>
+
                           {this.state.error_messages.problem_statement !=
                           undefined ? (
-                            <>{ReactTooltip.show(this.problem_statement_ref)}</>
-                          ) : null}
-
-                          <ReactTooltip
+                            <>{ReactTooltip.show(this.problem_statement_ref)}
+                             <ReactTooltip
                             id="problem_statement"
                             getContent={() => {
                               return this.state.error_messages
                                 .problem_statement;
                             }}
                           />
+                            </>
+                          ) : null}
+
+                          </>
+                          ) : null}
+
+                         
 
                           <label for="description">Problem Statement</label>
                           <textarea
@@ -553,16 +625,24 @@ class RegisterIdea extends Component {
                           ></textarea>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+                        {this.state.error_messages != undefined ? (
+                          <>
+                          
                           {this.state.error_messages.innovation != undefined ? (
-                            <>{ReactTooltip.show(this.innovation_ref)}</>
-                          ) : null}
-
-                          <ReactTooltip
+                            <>{ReactTooltip.show(this.innovation_ref)}
+                            <ReactTooltip
                             id="innovation"
                             getContent={() => {
                               return this.state.error_messages.innovation;
                             }}
                           />
+                            </>
+                          ) : null}
+
+                          </>
+                           ) : null}
+
+                          
                           <label for="description">Innovation</label>
 
                           <textarea
@@ -582,17 +662,24 @@ class RegisterIdea extends Component {
                           ></textarea>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+
+                        {this.state.error_messages != undefined ? (
+                          <>
+
                           {this.state.error_messages.idea_impact !=
                           undefined ? (
-                            <>{ReactTooltip.show(this.idea_impact_ref)}</>
-                          ) : null}
-
-                          <ReactTooltip
+                            <>{ReactTooltip.show(this.idea_impact_ref)}
+                             <ReactTooltip
                             id="idea_impact"
                             getContent={() => {
                               return this.state.error_messages.idea_impact;
                             }}
                           />
+                            </>
+                          ) : null}
+                          </>
+                          ) : null}
+                         
 
                           <label for="description">Idea Impact</label>
                           <textarea
@@ -667,17 +754,25 @@ class RegisterIdea extends Component {
                           ))}
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 m-0 p-2 input-group">
+
+                        {this.state.error_messages != undefined ? (
+                          <>
+
                           {this.state.error_messages.explain_reason !=
                           undefined ? (
-                            <>{ReactTooltip.show(this.explain_reason_ref)}</>
-                          ) : null}
-
-                          <ReactTooltip
+                            <>{ReactTooltip.show(this.explain_reason_ref)}
+                             <ReactTooltip
                             id="explain_reason"
                             getContent={() => {
                               return this.state.error_messages.explain_reason;
                             }}
                           />
+                            </>
+                          ) : null}
+                          </>
+                           ) : null}
+
+                         
                           <label for="logo">Explain Reason</label>
                           <textarea
                             name="explain_reason"
@@ -699,7 +794,7 @@ class RegisterIdea extends Component {
                           <input
                             type="submit"
                             class="btn primary-button"
-                            value="Update"
+                            value="Add"
                             style={{ marginLeft: "33%", width: "198px" }}
                           />
                         </div>
