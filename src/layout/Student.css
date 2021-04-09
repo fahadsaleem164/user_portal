@@ -1,0 +1,20 @@
+.button {
+    background-color:white; /* Green */
+    border: 2px solid rgb(5, 130, 131);
+    color: black;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    border-radius:4px;
+  }
+
+  .button:hover {
+    background-color: rgb(5, 130, 131);
+    color: white;
+  }
+
+  .data_row {
+    font-size: 14px;
+  }

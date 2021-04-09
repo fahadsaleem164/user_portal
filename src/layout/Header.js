@@ -39,7 +39,6 @@ class Header extends Component {
 
         return (
 
-           
             <header id="header">
                 <nav class="navbar navbar-expand navbar-fixed" style={{background:'black'}}>
                
@@ -146,6 +145,9 @@ class Header extends Component {
                                                                         <Link class="nav-link" to={'/add_new_team'}>New Team</Link>
                                                                         <Link class="nav-link" to={'/add_new_idea'}>Register an Idea</Link>
                                                                         <Link class="nav-link" to={'/get_idea'}>Idea</Link>
+                                                                        <Link class="nav-link" to={'/edit_idea'}>Edit Idea</Link>
+                                                                        <Link class="nav-link" to={'invitation'}>Send Invitation</Link>
+                                                                        <Link class="nav-link" to={'accept_invitation'}>Accept Invitation</Link>
                                                                         <hr></hr>
                                                                         <Logout />
                                                                     </li>

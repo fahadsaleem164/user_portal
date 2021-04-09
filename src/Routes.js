@@ -15,6 +15,9 @@ import Login from './components/Login'
 import Page404 from './layout/Page_404'
 import RegisterIdea from './components/student/RegisterIdea'
 import GetIdea from './components/student/GetIdea'
+import EditIdea from './components/student/EditIdea'
+import SendInvitation from './components/student/SendInvitation'
+import AcceptInvitation from './components/student/AcceptInvitation'
 
 // import PrivateRoute from './layout/PrivateRoute'
 
@@ -37,6 +40,9 @@ function Routes(props) {
              <Route exact path='/mentor_profile' component={MentorProfile}/>
              <Route exact path='/navel_profile' component={NavelProfile}/>
              <Route exact path='/get_idea' component={GetIdea}/>
+             <Route exact path='/edit_idea' component={EditIdea}/>
+             <Route exact path='/invitation' component={SendInvitation}/>
+             <Route exact path='/accept_invitation' component={AcceptInvitation}/>
              <Route component={Page404}/>
           </Switch>
         </Router>  

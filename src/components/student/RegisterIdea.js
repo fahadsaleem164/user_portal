@@ -11,6 +11,8 @@ import * as qs from "query-string";
 import Header from "./../../layout/Header";
 import ScreenLoader from "../../layout/ScreenLoader";
 import ReactTooltip from "react-tooltip";
+import FlashMessage from 'react-flash-message'
+
 
 class RegisterIdea extends Component {
   constructor(props) {
@@ -35,8 +37,8 @@ class RegisterIdea extends Component {
         idea_impact: "",
         tag_line: "",
         explain_reason: "",
-        load_class: "loaderscreen_loaded", //already load screen diplay none
-        visibility: false,
+        load_class: "loaderscreen", //already load screen diplay none
+        visibility: true,  
         name_validation: "",
         description_validation: "",
         problem_statement_validation: "",
@@ -241,13 +243,10 @@ class RegisterIdea extends Component {
 
     axios(axiosOptions)
       .then((response) => {
-        // {this.state.data.map((data , index) => (
-        //   console.log()
-        //   ))}
-
-        console.log(response.data.data.question);
 
         this.setState({
+          load_class: "loaderscreen_loaded",
+          visibility:false,
           questions: response.data.data.question,
         });
       })
@@ -451,7 +450,10 @@ class RegisterIdea extends Component {
 
                         {this.state.question_and_ans_error_msg != "" ? (
                           <div class="col-12 m-0 p-2 input-group">
-                            <p style={{ color: "red" }}>{this.state.question_and_ans_error_msg}</p>
+                             <FlashMessage duration={5000}>
+                                    <strong style={{color:'red'}}>{this.state.question_and_ans_error_msg}</strong>
+                                    </FlashMessage>
+                           
                           </div>
                         ) : null}
 
@@ -459,13 +461,18 @@ class RegisterIdea extends Component {
 
                         {this.state.error_status == "error" ? (
                           <div class="col-12 m-0 p-2 input-group">
-                            <p style={{ color: "red" }}>{this.state.msg}</p>
+                            {/* <p style={{ color: "red" }}>{this.state.msg}</p> */}
+                            <FlashMessage duration={5000}>
+                                    <strong style={{color:'red'}}>{this.state.msg}</strong>
+                                    </FlashMessage>
                           </div>
                         ) : null}
                         ​ {/* Display Sucess message */}
                         {this.state.error_status == "success" ? (
                           <div class="col-12 m-0 p-2 input-group">
-                            <p style={{ color: "green" }}>{this.state.msg}</p>
+                             <FlashMessage duration={5000}>
+                                      <h4 id="flash_message_heading">{this.state.msg}</h4>
+                                    </FlashMessage>
                           </div>
                         ) : null}
 
