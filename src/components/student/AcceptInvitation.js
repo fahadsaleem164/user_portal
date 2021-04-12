@@ -173,16 +173,7 @@ class AcceptInvitation extends Component {
               visiblity={this.state.visibility}
             />
                
-                {/* <div onClick={() => this.openModal()}>Send Invitation</div> */}
-                {/* <input type="button" value="Open"  /> */}
-                {/* <Modal visible={this.state.visible} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <div>
-                        <h1>Title</h1>
-                        <p>Some Contents</p>
-                        <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
-                    </div>
-                </Modal> */}
-
+              
                
 
 
@@ -191,6 +182,17 @@ class AcceptInvitation extends Component {
                         <div class="row">
                         <div class="col-12 col-lg-3"></div>
                         <div class="col-12 col-lg-6">
+
+                        <div onClick={() => this.openModal()}>Send Invitation</div> 
+               
+                 <Modal visible={this.state.visible} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div>
+                        <h1>Title</h1>
+                        <input type="text" />
+                        <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                    </div>
+                </Modal> 
+
 
                             
                         {this.state.error_status == "error" ? (
@@ -217,7 +219,7 @@ class AcceptInvitation extends Component {
                                                                 <th>Accept Invitation</th>
                                                             </tr>
 
-                                                            {this.state.data.map(i => 
+                                                            {/* {this.state.data.map(i => 
                                                                 <tr className='data_row'>
                                                                     <td>{i.first_name}</td>
                                                                     <td>{i.last_name}</td>
@@ -226,7 +228,7 @@ class AcceptInvitation extends Component {
                                                                 </tr>
                           
                                                                 )}
-                                                           
+                                                            */}
                                                             
                                                     </table>
                                             </div>
