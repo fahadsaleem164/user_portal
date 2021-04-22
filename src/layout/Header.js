@@ -142,7 +142,7 @@ class Header extends Component {
                                                                 <ul class="dropdown-menu">
                                                                     <li class="nav-item dropdown">
                                                                         <Link class="nav-link" to={'/user_profile'}>Edit Profile</Link> 
-                                                                        <Link class="nav-link" to={'/add_new_team'}>New Team</Link>
+                                                                        {/* <Link class="nav-link" to={'/add_new_team'}>New Team</Link> */}
                                                                         <Link class="nav-link" to={'/add_new_idea'}>Register an Idea</Link>
                                                                         <Link class="nav-link" to={'/get_idea'}>Idea</Link>
                                                                         <Link class="nav-link" to={'/edit_idea'}>Edit Idea</Link>

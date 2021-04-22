@@ -183,7 +183,7 @@ class AcceptInvitation extends Component {
                         <div class="col-12 col-lg-3"></div>
                         <div class="col-12 col-lg-6">
 
-                        <div onClick={() => this.openModal()}>Send Invitation</div> 
+                        {/* <div onClick={() => this.openModal()}>Send Invitation</div>  */}
                
                  <Modal visible={this.state.visible} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
