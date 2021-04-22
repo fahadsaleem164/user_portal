@@ -5,6 +5,19 @@ import {connect } from 'react-redux'
 
 class Logout extends Component {
 
+  constructor(props){
+
+ 
+
+   super(props)
+
+   this.state = {
+
+       login_state : ''
+                 
+  }
+}
+
     logout = (event) => {
 
         localStorage.removeItem("token");
@@ -13,9 +26,11 @@ class Logout extends Component {
         localStorage.removeItem("state_full_lorem_ipsum");
 
         this.setState({
-            logged_in: false
+            logged_in: false,
+            login_state:'logout'
 
         })
+
 
         this.props.changeName(false)
         
@@ -26,8 +41,14 @@ class Logout extends Component {
 
 
     render() {
+
         return (
-            <div>
+                <div> {this.state.login_state == 'logout'?
+                     <>
+                        <Redirect to="/" />
+                     </> 
+                : null}
+                  
                  <Link class="nav-link" to={''}  onClick={this.logout}>Logout</Link> 
                                                                
             </div>
