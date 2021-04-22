@@ -53,7 +53,7 @@ class UserVerify extends Component {
       
         const axiosOptions = {
 
-          url: process.env.React_App_API_URL + 'verify_email',
+          url: process.env.React_App_API_URL + 'verify-email',
           method: "post",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           data: qs.stringify(formData)
