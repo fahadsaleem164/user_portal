@@ -219,7 +219,7 @@ class AcceptInvitation extends Component {
                                                                 <th>Accept Invitation</th>
                                                             </tr>
 
-                                                            {/* {this.state.data.map(i => 
+                                                            {this.state.data.map(i => 
                                                                 <tr className='data_row'>
                                                                     <td>{i.first_name}</td>
                                                                     <td>{i.last_name}</td>
@@ -228,7 +228,7 @@ class AcceptInvitation extends Component {
                                                                 </tr>
                           
                                                                 )}
-                                                            */}
+                                                           
                                                             
                                                     </table>
                                             </div>
